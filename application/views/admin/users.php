@@ -169,6 +169,7 @@
                     <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil'); ?>
                   </div>
                 <?php } ?>
+                <a href="<?= base_url('admin/form_user') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -176,6 +177,7 @@
                       <th>Email</th>
                       <th>Role</th>
                       <th>Last Login</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -190,6 +192,8 @@
                             <td>User Biasa</td>
                           <?php } ?>
                           <td><?= $dd->last_login ?></td>
+                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_user/' . $dd->id_user) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/proses_delete_user/' . $dd->id_user) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                     </tr>
                   <?php endforeach; ?>
                 <?php } else { ?>
