@@ -243,4 +243,86 @@ class Admin extends CI_Controller
   ####################################
   // End Users
   ####################################
+
+  
+  ####################################
+  // KATEGORI
+  ####################################
+
+  public function form_kategori()
+  {
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_kategori/form_insert', $data);
+  }
+
+  public function tabel_kategori()
+  {
+    $data['list_data'] = $this->M_admin->select('tb_kategori');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_kategori', $data);
+  }
+
+  public function update_kategori()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_kategori' => $uri);
+    $data['data_kategori'] = $this->M_admin->get_data('tb_kategori', $where);
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_kategori/form_update', $data);
+  }
+
+  public function delete_kategori()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_kategori' => $uri);
+    $this->M_admin->delete('tb_kategori', $where);
+    redirect(base_url('admin/tabel_kategori'));
+  }
+
+  public function proses_kategori_insert()
+  {
+    $this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $nama_kategori = $this->input->post('nama_kategori', TRUE);
+
+      $data = array(
+        'nama_kategori' => $nama_kategori
+      );
+      $this->M_admin->insert('tb_kategori', $data);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data kategori Berhasil Ditambahkan');
+      redirect(base_url('admin/form_kategori'));
+    } else {
+      $this->load->view('admin/form_kategori/form_insert');
+    }
+  }
+
+  public function proses_kategori_update()
+  {
+    $this->form_validation->set_rules('nama_kategori', 'Nama kategori', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $id_kategori   = $this->input->post('id_kategori', TRUE);
+      $nama_kategori = $this->input->post('nama_kategori', TRUE);
+
+      $where = array(
+        'id_kategori' => $id_kategori
+      );
+
+      $data = array(
+        'nama_kategori' => $nama_kategori
+      );
+      $this->M_admin->update('tb_kategori', $data, $where);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data kategori Berhasil Di Update');
+      redirect(base_url('admin/tabel_kategori'));
+    } else {
+      $this->load->view('admin/form_kategori/form_update');
+    }
+  }
+
+  ####################################
+  // END kategori
+  ####################################
 }
