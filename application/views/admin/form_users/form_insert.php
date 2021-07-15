@@ -121,7 +121,20 @@
               </span>
             </a>
           </li>
-
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i> <span>Forms</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?= base_url('admin/form_barang') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang</a></li>
+              <li><a href="<?= base_url('admin/form_supplier') ?>"><i class="fa fa-circle-o"></i> Tambah Data Supplier</a></li>
+              <li><a href="<?= base_url('admin/form_kategori') ?>"><i class="fa fa-circle-o"></i> Tambah Data Kategori</a></li>
+              <li><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Tambah Data Satuan</a></li>
+            </ul>
+          </li>
           <li>
             <a href="<?php echo base_url('admin/profile') ?>">
               <i class="fa fa-cogs" aria-hidden="true"></i> <span>Profile</span></a>

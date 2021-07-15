@@ -37,9 +37,9 @@
             <!-- Logo -->
             <a href="<?php echo base_url('admin') ?>" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b></b></span>
+                <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b></b></span>
+                <span class="logo-lg"><b>Admin</b>LTE</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -161,7 +161,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Update Data Kategori Barang
+                    Update Data Barang Masuk
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -179,12 +179,12 @@
                             <!-- general form elements -->
                             <div class="box box-primary" style="width:94%;">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title"><i class="fa fa-archive" aria-hidden="true"></i> Update Data Kategori Barang</h3>
+                                    <h3 class="box-title"><i class="fa fa-archive" aria-hidden="true"></i> Update Data Barang Masuk</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <!-- form start -->
                                 <div class="container">
-                                    <form action="<?= base_url('admin/proses_kategori_update') ?>" role="form" method="post">
+                                    <form action="<?= base_url('admin/proses_supplier_update') ?>" role="form" method="post">
 
                                         <?php if (validation_errors()) { ?>
                                             <div class="alert alert-warning alert-dismissible">
@@ -195,12 +195,20 @@
 
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <?php foreach ($data_kategori as $d) { ?>
+                                                <?php foreach ($data_supplier as $d) { ?>
                                                     <div class="box-body">
                                                         <div class="form-group" style="display:inline-block;">
-                                                            <input type="hidden" name="id_kategori" value="<?= $d->id_kategori ?>">
-                                                            <label for="nama_kategori" style="width:73%;">Nama Kategori</label>
-                                                            <input type="text" required name="nama_kategori" style="width:90%;margin-right: 67px;" class="form-control" id="nama_kategori" placeholder="Nama Kategori" value="<?= $d->nama_kategori ?>">
+                                                            <input type="hidden" name="id_supplier" value="<?= $d->id_supplier ?>">
+                                                            <label for="nama_supplier" style="width:73%;">Nama Supplier</label>
+                                                            <input type="text" required name="nama_supplier" style="width:90%;margin-right: 67px;" class="form-control" id="nama_supplier" placeholder="Nama Supplier" value="<?= $d->nama_supplier ?>">
+                                                        </div>
+                                                        <div class="form-group" style="display:inline-block;">
+                                                            <label for="no_telp" style="width:73%;">No Telp</label>
+                                                            <input type="number" name="no_telp" style="width:90%;margin-right: 67px;" class="form-control" id="no_telp" placeholder="No Telp" value="<?= $d->no_telp ?>">
+                                                        </div>
+                                                        <div class="form-group" style="display:inline-block;">
+                                                            <label for="alamat" style="width:73%;">Alamat</label>
+                                                            <input type="text" name="alamat" style="width:90%;margin-right: 67px;" class="form-control" id="alamat" placeholder="No Telp" value="<?= $d->alamat ?>">
                                                         </div>
                                                         <div class="form-group" style="display:inline-block;">
                                                             <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:20px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
@@ -210,7 +218,7 @@
 
                                                     <div class="box-footer" style="width:93%;">
                                                         <a type="button" class="btn btn-default" style="width:10%;margin-right:26%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
-                                                        <a type="button" class="btn btn-info" style="width:13%;margin-right:29%" href="<?= base_url('admin/tabel_kategori') ?>" name="btn_listsatuan"><i class="fa fa-table" aria-hidden="true"></i> Lihat Kategori</a>
+                                                        <a type="button" class="btn btn-info" style="width:13%;margin-right:29%" href="<?= base_url('admin/tabel_satuan') ?>" name="btn_listsatuan"><i class="fa fa-table" aria-hidden="true"></i> Lihat Satuan</a>
                                                         <button type="submit" style="width:20%" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
                                                     </div>
                                     </form>

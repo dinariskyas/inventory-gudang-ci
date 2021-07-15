@@ -321,6 +321,15 @@ class Admin extends CI_Controller
       $this->load->view('admin/form_kategori/form_update');
     }
   }
+
+  ####################################
+  // END Kategori 
+  ####################################
+
+  ####################################
+  // SATUAN
+  ####################################
+
   public function form_satuan()
   {
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
@@ -394,10 +403,98 @@ class Admin extends CI_Controller
     }
   }
 
-
-
   ####################################
-  // END kategori
+  // END Satuan
   ####################################
 
+  ####################################
+  // SUPPLIER
+  ####################################
+
+  public function form_supplier()
+  {
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_supplier/form_insert', $data);
+  }
+
+  public function tabel_supplier()
+  {
+    $data['list_data'] = $this->M_admin->select('tb_supplier');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_supplier', $data);
+  }
+
+  public function update_supplier()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_supplier' => $uri);
+    $data['data_supplier'] = $this->M_admin->get_data('tb_supplier', $where);
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_supplier/form_update', $data);
+  }
+
+  public function delete_supplier()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_supplier' => $uri);
+    $this->M_admin->delete('tb_supplier', $where);
+    redirect(base_url('admin/tabel_supplier'));
+  }
+
+  public function proses_supplier_insert()
+  {
+    $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'trim|required|max_length[100]');
+    $this->form_validation->set_rules('no_telp', 'No Telp', 'trim|required|max_length[100]');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $nama_supplier = $this->input->post('nama_supplier', TRUE);
+      $no_telp = $this->input->post('no_telp', TRUE);
+      $alamat = $this->input->post('alamat', TRUE);
+
+      $data = array(
+        'nama_supplier' => $nama_supplier,
+        'no_telp' => $no_telp,
+        'alamat' => $alamat
+      );
+      $this->M_admin->insert('tb_supplier', $data);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data supplier Berhasil Ditambahkan');
+      redirect(base_url('admin/form_supplier'));
+    } else {
+      $this->load->view('admin/form_supplier/form_insert');
+    }
+  }
+
+  public function proses_supplier_update()
+  {
+    $this->form_validation->set_rules('nama_supplier', 'Nama supplier', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $id_supplier   = $this->input->post('id_supplier', TRUE);
+      $nama_supplier = $this->input->post('nama_supplier', TRUE);
+      $no_telp = $this->input->post('no_telp', TRUE);
+      $alamat = $this->input->post('alamat', TRUE);
+
+      $where = array(
+        'id_supplier' => $id_supplier
+      );
+
+      $data = array(
+        'nama_supplier' => $nama_supplier,
+        'no_telp' => $no_telp,
+        'alamat' => $alamat
+      );
+      $this->M_admin->update('tb_supplier', $data, $where);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data supplier Berhasil Di Update');
+      redirect(base_url('admin/tabel_supplier'));
+    } else {
+      $this->load->view('admin/form_supplier/form_update');
+    }
+  }
+
+  ####################################
+  // END supplier
+  ####################################
 }
