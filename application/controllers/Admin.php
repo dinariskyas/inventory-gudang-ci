@@ -244,7 +244,7 @@ class Admin extends CI_Controller
   // End Users
   ####################################
 
-  
+
   ####################################
   // KATEGORI
   ####################################
@@ -321,8 +321,83 @@ class Admin extends CI_Controller
       $this->load->view('admin/form_kategori/form_update');
     }
   }
+  public function form_satuan()
+  {
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_satuan/form_insert', $data);
+  }
+
+  public function tabel_satuan()
+  {
+    $data['list_data'] = $this->M_admin->select('tb_satuan');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_satuan', $data);
+  }
+
+  public function update_satuan()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_satuan' => $uri);
+    $data['data_satuan'] = $this->M_admin->get_data('tb_satuan', $where);
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_satuan/form_update', $data);
+  }
+
+  public function delete_satuan()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_satuan' => $uri);
+    $this->M_admin->delete('tb_satuan', $where);
+    redirect(base_url('admin/tabel_satuan'));
+  }
+
+  public function proses_satuan_insert()
+  {
+    $this->form_validation->set_rules('nama_satuan', 'Nama Satuan', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $nama_satuan = $this->input->post('nama_satuan', TRUE);
+
+      $data = array(
+        'nama_satuan' => $nama_satuan
+      );
+      $this->M_admin->insert('tb_satuan', $data);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data satuan Berhasil Ditambahkan');
+      redirect(base_url('admin/form_satuan'));
+    } else {
+      $this->load->view('admin/form_satuan/form_insert');
+    }
+  }
+
+  public function proses_satuan_update()
+  {
+    $this->form_validation->set_rules('nama_satuan', 'Nama Satuan', 'trim|required|max_length[100]');
+
+    if ($this->form_validation->run() ==  TRUE) {
+      $id_satuan   = $this->input->post('id_satuan', TRUE);
+      $nama_satuan = $this->input->post('nama_satuan', TRUE);
+
+      $where = array(
+        'id_satuan' => $id_satuan
+      );
+
+      $data = array(
+        'nama_satuan' => $nama_satuan
+      );
+      $this->M_admin->update('tb_satuan', $data, $where);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data satuan Berhasil Di Update');
+      redirect(base_url('admin/tabel_satuan'));
+    } else {
+      $this->load->view('admin/form_satuan/form_update');
+    }
+  }
+
+
 
   ####################################
   // END kategori
   ####################################
+
 }
