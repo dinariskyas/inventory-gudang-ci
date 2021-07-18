@@ -130,6 +130,12 @@
               <li><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Tambah Data Satuan</a></li>
             </ul>
           </li>
+          <ul class="treeview-menu">
+            <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
+            <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
+            <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
+            <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
+          </ul>
           <li class="active">
             <a href="<?php echo base_url('admin/profile') ?>">
               <i class="fa fa-cogs" aria-hidden="true"></i> <span>Profile</span></a>
