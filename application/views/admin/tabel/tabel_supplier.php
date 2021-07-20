@@ -227,7 +227,7 @@
                           <td><?= $dd->nama_supplier ?></td>
                           <td><?= $dd->no_telp ?></td>
                           <td><?= $dd->alamat ?></td>
-                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_kategori/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_gisupplier/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                           <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_kategori/' . $dd->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                     </tr>
                     <?php $no++; ?>
