@@ -81,10 +81,10 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat"><i class="fa fa-cogs" aria-hidden="true"></i> Profile</a>
+                    <a href="<?= base_url('admin/sigout') ?>" class="btn btn-default btn-flat"><i class="fa fa-cogs" aria-hidden="true"></i> Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="<?= base_url('admin/sigout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="<?= base_url('admin/sigout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -152,11 +152,11 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="<?= base_url('admin/tabel_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
+              <li class="active"><a href="<?= base_url('admin/tabel_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
               <li><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
               <li><a href="<?= base_url('admin/tabel_barang') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
               <li><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
-              <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
+              <li><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
               <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
             </ul>
           </li>
@@ -179,12 +179,12 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Tabel Kategori
+          Tabel Barang Masuk
         </h1>
         <ol class="breadcrumb">
           <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
           <li>Tables</li>
-          <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>">Tabel Kategori</a></li>
+          <li class="active"><a href="<?= base_url('admin/tabel_barang_masuk') ?>">Tabel Barang Masuk</li>
         </ol>
       </section>
 
@@ -208,14 +208,28 @@
                   </div>
                 <?php } ?>
 
-                <a href="<?= base_url('admin/form_kategori') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+                <?php if ($this->session->flashdata('msg_berhasil_keluar')) { ?>
+                  <div class="alert alert-success alert-dismissible" style="width:100%">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil_keluar'); ?>
+                  </div>
+                <?php } ?>
+
+                <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama Kategori</th>
+                      <th>ID_Transaksi</th>
+                      <th>Tanggal</th>
+                      <th>Supplier</th>
+                      <th>Nama Barang</th>
+                      <th>Kategori</th>
+                      <th>Satuan</th>
+                      <th>Jumlah</th>
                       <th>Update</th>
                       <th>Delete</th>
+                      <th>Keluarkan</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -224,9 +238,16 @@
                         <?php $no = 1; ?>
                         <?php foreach ($list_data as $dd) : ?>
                           <td><?= $no ?></td>
-                          <td><?= $dd->nama_kategori ?></td>
-                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_kategori/' . $dd->id_kategori) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_kategori/' . $dd->id_kategori) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                          <td><?= $dd->id_barang_masuk ?></td>
+                          <td><?= $dd->tanggal ?></td>
+                          <td><?= $dd->supplier ?></td>
+                          <td><?= $dd->barang ?></td>
+                          <td><?= $dd->kategori ?></td>
+                          <td><?= $dd->satuan ?></td>
+                          <td><?= $dd->jumlah ?></td>
+                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-success btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $dd->id_barang_masuk) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"></i></a></td>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
@@ -234,22 +255,18 @@
                   <td colspan="7" align="center"><strong>Data Kosong</strong></td>
                 <?php } ?>
                   </tbody>
-                  <!-- <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Kode Satuan</th>
-                  <th>Nama Satuan</th>
-                </tr>
-                </tfoot> -->
                 </table>
               </div>
               <!-- /.box-body -->
             </div>
 
 
-            <!-- /.col -->
+
+            <!-- /.box -->
           </div>
-          <!-- /.row -->
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>
@@ -261,6 +278,8 @@
       <strong>Copyright &copy; <?= date('Y') ?></strong>
 
     </footer>
+
+    <!-- Control Sidebar -->
   </div>
   <!-- ./wrapper -->
 
@@ -299,15 +318,7 @@
     });
 
     $(function() {
-      $('#example1').DataTable({
-        'paging': true,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': false,
-        'info': true,
-        'autoWidth': false
-
-      })
+      $('#example1').DataTable()
       $('#example2').DataTable({
         'paging': true,
         'lengthChange': false,

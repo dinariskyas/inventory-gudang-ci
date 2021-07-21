@@ -137,6 +137,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
+              <li><a href="<?= base_url('admin/form_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang Masuk</a></li>
               <li><a href="<?= base_url('admin/form_barang') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang</a></li>
               <li><a href="<?= base_url('admin/form_supplier') ?>"><i class="fa fa-circle-o"></i> Tambah Data Supplier</a></li>
               <li><a href="<?= base_url('admin/form_kategori') ?>"><i class="fa fa-circle-o"></i> Tambah Data Kategori</a></li>
@@ -151,13 +152,14 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
-              <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
-              <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
+              <li><a href="<?= base_url('admin/tabel_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
+              <li><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
+              <li><a href="<?= base_url('admin/tabel_barang') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
+              <li class="active"><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
+              <li><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
               <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
             </ul>
           </li>
-          <li>
           <li class="header">LABELS</li>
           <li>
             <a href="<?php echo base_url('admin/profile') ?>">
@@ -227,7 +229,7 @@
                           <td><?= $dd->nama_supplier ?></td>
                           <td><?= $dd->no_telp ?></td>
                           <td><?= $dd->alamat ?></td>
-                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_gisupplier/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_supplier/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
                           <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_kategori/' . $dd->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                     </tr>
                     <?php $no++; ?>

@@ -581,4 +581,118 @@ class Admin extends CI_Controller
   ####################################
   // END DATA BARANG 
   ####################################
+
+  ####################################
+  // DATA BARANG MASUK
+  ####################################
+
+  public function form_barang_masuk()
+  {
+    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+    $data['list_kategori'] = $this->M_admin->select('tb_kategori');
+    $data['list_barang'] = $this->M_admin->select('tb_barang');
+    $data['list_supplier'] = $this->M_admin->select('tb_supplier');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_barang_masuk/form_insert', $data);
+  }
+
+  public function tabel_barang_masuk()
+  {
+    $data = array(
+      'list_data' => $this->M_admin->select('tb_barang_masuk'),
+      'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'))
+    );
+    $this->load->view('admin/tabel/tabel_barang_masuk', $data);
+  }
+
+  public function update_barang_masuk($id_barang_masuk)
+  {
+    $where = array('id_barang_masuk' => $id_barang_masuk);
+    $data['data_barang_masuk_update'] = $this->M_admin->get_data('tb_barang_masuk', $where);
+    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+    $data['list_kategori'] = $this->M_admin->select('tb_kategori');
+    $data['list_barang'] = $this->M_admin->select('tb_barang');
+    $data['list_supplier'] = $this->M_admin->select('tb_supplier');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/form_barang_masuk/form_update', $data);
+  }
+
+  public function delete_barang_masuk($id_barang_masuk)
+  {
+    $where = array('id_barang_masuk' => $id_barang_masuk);
+    $this->M_admin->delete('tb_barang_masuk', $where);
+    redirect(base_url('admin/tabel_barang_masuk'));
+  }
+
+  public function proses_data_barang_masuk_insert()
+  {
+    $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+
+    if ($this->form_validation->run() == TRUE) {
+      $id_barang_masuk = $this->input->post('id_barang_masuk', TRUE);
+      $tanggal      = $this->input->post('tanggal', TRUE);
+      $supplier       = $this->input->post('supplier', TRUE);
+      $barang  = $this->input->post('barang', TRUE);
+      $kategori  = $this->input->post('kategori', TRUE);
+      $satuan       = $this->input->post('satuan', TRUE);
+      $jumlah       = $this->input->post('jumlah', TRUE);
+
+      $data = array(
+        'id_barang_masuk' => $id_barang_masuk,
+        'tanggal'      => $tanggal,
+        'supplier'       => $supplier,
+        'barang'  => $barang,
+        'kategori'  => $kategori,
+        'satuan'       => $satuan,
+        'jumlah'       => $jumlah
+      );
+      $this->M_admin->insert('tb_barang_masuk', $data);
+
+      $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Ditambahkan');
+      redirect(base_url('admin/form_barang_masuk'));
+    } else {
+      $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+      $data['list_kategori'] = $this->M_admin->select('tb_kategori');
+      $data['list_barang'] = $this->M_admin->select('tb_barang');
+      $data['list_supplier'] = $this->M_admin->select('tb_supplier');
+      $this->load->view('admin/form_barang_masuk/form_insert', $data);
+    }
+  }
+
+  public function proses_data_barang_masuk_update()
+  {
+    $this->form_validation->set_rules('jumlah', 'Jumlah', 'required');
+
+    if ($this->form_validation->run() == TRUE) {
+      $id_barang_masuk  = $this->input->post('id_barang_masuk', TRUE);
+      $tanggal          = $this->input->post('tanggal', TRUE);
+      $supplier         = $this->input->post('supplier', TRUE);
+      $barang           = $this->input->post('barang', TRUE);
+      $kategori         = $this->input->post('kategori', TRUE);
+      $satuan           = $this->input->post('satuan', TRUE);
+      $jumlah           = $this->input->post('jumlah', TRUE);
+
+      $where = array('id_barang_masuk' => $id_barang_masuk);
+      $data = array(
+        'id_barang_masuk' => $id_barang_masuk,
+        'tanggal'         => $tanggal,
+        'supplier'        => $supplier,
+        'barang'          => $barang,
+        'kategori'        => $kategori,
+        'satuan'          => $satuan,
+        'jumlah'          => $jumlah
+      );
+      $this->M_admin->update('tb_barang_masuk', $data, $where);
+      $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Diupdate');
+      redirect(base_url('admin/tabel_barang_masuk'));
+    } else {
+      $this->load->view('admin/form_barang_masuk/form_update');
+    }
+  }
+
+  ####################################
+  // END DATA BARANG MASUK
+  ####################################
+
+
 }

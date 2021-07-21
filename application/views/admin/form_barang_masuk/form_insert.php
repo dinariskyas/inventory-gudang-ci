@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -13,16 +13,12 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/dist/css/AdminLTE.min.css">
-
-  <link rel="stylesheet" href="<?php echo base_url() ?>assets/sweetalert/dist/sweetalert.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/dist/css/skins/_all-skins.min.css">
-
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/datetimepicker/css/bootstrap-datetimepicker.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -71,9 +67,10 @@
                   <?php foreach ($avatar as $a) { ?>
                     <img src="<?php echo base_url('assets/upload/user/img/' . $a->nama_file) ?>" class="img-circle" alt="User Image">
                   <?php } ?>
+
                   <p>
                     <?= $this->session->userdata('name') ?> - Web Developer
-                    <small>Last Login : <?= $this->session->userdata('last_login') ?></small>
+                    <small>Last Login: <?= $this->session->userdata('last_login') ?></small>
                   </p>
                 </li>
                 <!-- Menu Body -->
@@ -81,10 +78,10 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat"><i class="fa fa-cogs" aria-hidden="true"></i> Profile</a>
+                    <a href="<?= base_url('admin/profile') ?>" class="btn btn-default btn-flat"><i class="fa fa-cogs" aria-hidden="true"></i> Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="<?= base_url('admin/sigout') ?>" class="btn btn-default btn-flat">Sign out</a>
+                    <a href="<?= base_url('admin/sigout') ?>" class="btn btn-default btn-flat"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -95,6 +92,7 @@
       </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
+
     <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
       <section class="sidebar">
@@ -123,13 +121,8 @@
                 <!-- <i class="fa fa-angle-left pull-right"></i> -->
               </span>
             </a>
-            <!-- <ul class="treeview-menu">
-            <li><a href="<?php echo base_url() ?>assets/web_admin/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="<?php echo base_url('admin') ?>"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul> -->
           </li>
-
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-edit"></i> <span>Forms</span>
               <span class="pull-right-container">
@@ -137,14 +130,14 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="<?= base_url('admin/form_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang Masuk</a></li>
+              <li class="active"><a href="<?= base_url('admin/form_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang Masuk</a></li>
               <li><a href="<?= base_url('admin/form_barang') ?>"><i class="fa fa-circle-o"></i> Tambah Data Barang</a></li>
               <li><a href="<?= base_url('admin/form_supplier') ?>"><i class="fa fa-circle-o"></i> Tambah Data Supplier</a></li>
               <li><a href="<?= base_url('admin/form_kategori') ?>"><i class="fa fa-circle-o"></i> Tambah Data Kategori</a></li>
               <li><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Tambah Data Satuan</a></li>
             </ul>
           </li>
-          <li class="treeview active">
+          <li class="treeview ">
             <a href="#">
               <i class="fa fa-table"></i> <span>Tables</span>
               <span class="pull-right-container">
@@ -156,7 +149,7 @@
               <li><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
               <li><a href="<?= base_url('admin/tabel_barang') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
               <li><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
-              <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
+              <li><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
               <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
             </ul>
           </li>
@@ -179,143 +172,168 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Tabel Kategori
+          Input Data Barang Masuk
         </h1>
         <ol class="breadcrumb">
-          <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li>Tables</li>
-          <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>">Tabel Kategori</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">Forms</a></li>
+          <li class="active">Data Barang Masuk</li>
         </ol>
       </section>
 
       <!-- Main content -->
       <section class="content">
         <div class="row">
-          <div class="col-xs-12">
+          <!-- left column -->
+          <div class="col-md-12">
+            <div class="container">
+              <!-- general form elements -->
+              <div class="box box-primary" style="width:94%;">
+                <div class="box-header with-border">
+                  <h3 class="box-title"><i class="fa fa-archive" aria-hidden="true"></i> Tambah Data Barang Masuk</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="container">
+                  <form action="<?= base_url('admin/proses_data_barang_masuk_insert') ?>" role="form" method="post">
+
+                    <?php if ($this->session->flashdata('msg_berhasil')) { ?>
+                      <div class="alert alert-success alert-dismissible" style="width:91%">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil'); ?>
+                      </div>
+                    <?php } ?>
+
+                    <?php if (validation_errors()) { ?>
+                      <div class="alert alert-warning alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Warning!</strong><br> <?php echo validation_errors(); ?>
+                      </div>
+                    <?php } ?>
+
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label for="id_barang_masuk" style="margin-left:220px;display:inline;">ID Transaksi</label>
+                        <input type="text" name="id_barang_masuk" style="margin-left:37px;width:20%;display:inline;" class="form-control" readonly="readonly" value="WEST-<?= date("Y"); ?><?= random_string('numeric', 8); ?>">
+                      </div>
+                      <div class="form-group">
+                        <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
+                        <input type="text" name="tanggal" style="margin-left:64px;width:20%;display:inline;" class="form-control form_datetime" placeholder="Klik Disini">
+                      </div>
+                      <div class="form-group" style="margin-bottom:40px;">
+                        <label for="supplier" style="margin-left:220px;display:inline;">Supplier</label>
+                        <select class="form-control" name="supplier" style="margin-left:60px;width:20%;display:inline;"">
+                          <option value="" selected="">-- Pilih --</option>
+                          <?php foreach ($list_supplier as $s) { ?>
+                            <option value=" <?= $s->nama_supplier ?>"><?= $s->nama_supplier ?></option>
+                        <?php } ?>
+                        </select>
+                      </div>
+                      <div class="form-group" style="display:inline-block;">
+                        <label for="barang" style="width:73%;margin-left: 12px;">Barang</label>
+                        <select class="form-control" name="barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
+                          <option value="" selected="">-- Pilih --</option>
+                          <?php foreach ($list_barang as $b) { ?>
+                            <option value="<?= $b->nama_barang ?>"><?= $b->nama_barang ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="form-group" style="display:inline-block;">
+                        <label for="kategori" style="width:73%;margin-left:34px;">Kategori</label>
+                        <select class="form-control" name="kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
+                          <option value="" selected="">-- Pilih --</option>
+                          <?php foreach ($list_kategori as $k) { ?>
+                            <option value="<?= $k->nama_kategori ?>"><?= $k->nama_kategori ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="form-group" style="display:inline-block;">
+                        <label for="satuan" style="width:73%;margin-left:64px;">Satuan</label>
+                        <select class="form-control" name="satuan" style="width:90%;margin-left:64px;margin-right: 18px;">
+                          <option value="" selected="">-- Pilih --</option>
+                          <?php foreach ($list_satuan as $s) { ?>
+                            <option value="<?= $s->nama_satuan ?>"><?= $s->nama_satuan ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="form-group" style="display:inline-block;">
+                        <label for="jumlah" style="width:73%;margin-left:54px;">Jumlah</label>
+                        <input type="number" name="jumlah" style="width:41%;margin-left:54px;margin-right:8px;" class="form-control" id="jumlah">
+                      </div>
+                      <div class="form-group" style="display:inline-block;">
+                        <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:-40px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
+                      </div>
+                      <!-- /.box-body -->
+                      <div class="box-footer" style="width:93%;">
+                        <a type="button" class="btn btn-default" style="width:10%;margin-right:26%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+                        <a type="button" class="btn btn-info" style="width:17%;margin-right:26%" href="<?= base_url('admin/tabel_barang_masuk') ?>" name="btn_listbarang"><i class="fa fa-table" aria-hidden="true"></i> Lihat List Barang Masuk</a>
+                        <button type="submit" style="width:20%" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+              <!-- /.box -->
+
+              <!-- Form Element sizes -->
+
+              <!-- /.box -->
+
+
+              <!-- /.box -->
+
+              <!-- Input addon -->
+
+              <!-- /.box -->
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <!-- <div class="col-md-6">
+          <!-- Horizontal Form -->
 
             <!-- /.box -->
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Stok Barang Masuk</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
+            <!-- general form elements disabled -->
 
-                <?php if ($this->session->flashdata('msg_berhasil')) { ?>
-                  <div class="alert alert-success alert-dismissible" style="width:100%">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong>Success!</strong><br> <?php echo $this->session->flashdata('msg_berhasil'); ?>
-                  </div>
-                <?php } ?>
+            <!-- /.box -->
 
-                <a href="<?= base_url('admin/form_kategori') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Kategori</th>
-                      <th>Update</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <?php if (is_array($list_data)) { ?>
-                        <?php $no = 1; ?>
-                        <?php foreach ($list_data as $dd) : ?>
-                          <td><?= $no ?></td>
-                          <td><?= $dd->nama_kategori ?></td>
-                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_kategori/' . $dd->id_kategori) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_kategori/' . $dd->id_kategori) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                    </tr>
-                    <?php $no++; ?>
-                  <?php endforeach; ?>
-                <?php } else { ?>
-                  <td colspan="7" align="center"><strong>Data Kosong</strong></td>
-                <?php } ?>
-                  </tbody>
-                  <!-- <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Kode Satuan</th>
-                  <th>Nama Satuan</th>
-                </tr>
-                </tfoot> -->
-                </table>
-              </div>
-              <!-- /.box-body -->
-            </div>
-
-
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
-      </section>
-      <!-- /.content -->
+        </div>
+        <!--/.col (right) -->
     </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>Copyright &copy; <?= date('Y') ?></strong>
-
-    </footer>
+    <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; <?= date('Y') ?></strong>
+  </footer>
   </div>
   <!-- ./wrapper -->
 
   <!-- jQuery 3 -->
   <script src="<?php echo base_url() ?>assets/web_admin/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/sweetalert/dist/sweetalert.min.js"></script>
   <!-- Bootstrap 3.3.7 -->
   <script src="<?php echo base_url() ?>assets/web_admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- DataTables -->
-  <script src="<?php echo base_url() ?>assets/web_admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/web_admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="<?php echo base_url() ?>assets/web_admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
   <!-- FastClick -->
   <script src="<?php echo base_url() ?>assets/web_admin/bower_components/fastclick/lib/fastclick.js"></script>
   <!-- AdminLTE App -->
   <script src="<?php echo base_url() ?>assets/web_admin/dist/js/adminlte.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?php echo base_url() ?>assets/web_admin/dist/js/demo.js"></script>
-  <!-- page script -->
-  <script>
-    jQuery(document).ready(function($) {
-      $('.btn-delete').on('click', function() {
-        var getLink = $(this).attr('href');
-        swal({
-          title: 'Delete Data',
-          text: 'Yakin Ingin Menghapus Data ?',
-          html: true,
-          confirmButtonColor: '#d9534f',
-          showCancelButton: true,
-        }, function() {
-          window.location.href = getLink
-        });
-        return false;
-      });
-    });
 
-    $(function() {
-      $('#example1').DataTable({
-        'paging': true,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': false,
-        'info': true,
-        'autoWidth': false
-
-      })
-      $('#example2').DataTable({
-        'paging': true,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': true,
-        'info': true,
-        'autoWidth': false
-      })
+  <script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+      format: 'dd/mm/yyyy',
+      autoclose: true,
+      todayBtn: true,
+      pickTime: false,
+      minView: 2,
+      maxView: 4,
     });
   </script>
 </body>
