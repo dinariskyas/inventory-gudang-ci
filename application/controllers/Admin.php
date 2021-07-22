@@ -690,9 +690,72 @@ class Admin extends CI_Controller
     }
   }
 
+
   ####################################
   // END DATA BARANG MASUK
   ####################################
 
+  ####################################
+  // DATA MASUK KE DATA KELUAR
+  ####################################
 
+  public function barang_keluar()
+  {
+    $uri = $this->uri->segment(3);
+    $where = array('id_barang_masuk' => $uri);
+    $data['list_data'] = $this->M_admin->get_data('tb_barang_masuk', $where);
+    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+    $data['list_kategori'] = $this->M_admin->select('tb_kategori');
+    $data['list_barang'] = $this->M_admin->select('tb_barang');
+    $data['list_supplier'] = $this->M_admin->select('tb_supplier');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/perpindahan_barang/form_update', $data);
+  }
+
+  public function proses_data_keluar()
+  {
+    $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'trim|required');
+    if ($this->form_validation->run() === TRUE) {
+      $id_barang_masuk   = $this->input->post('id_barang_masuk', TRUE);
+      $tanggal_masuk  = $this->input->post('tanggal', TRUE);
+      $tanggal_keluar = $this->input->post('tanggal_keluar', TRUE);
+      $supplier       = $this->input->post('supplier', TRUE);
+      $barang         = $this->input->post('barang', TRUE);
+      $kategori       = $this->input->post('kategori', TRUE);
+      $satuan         = $this->input->post('satuan', TRUE);
+      $jumlah         = $this->input->post('jumlah', TRUE);
+
+      $where = array('id_barang_masuk' => $id_barang_masuk);
+      $data = array(
+        'id_barang_masuk' => $id_barang_masuk,
+        'tanggal_masuk' => $tanggal_masuk,
+        'tanggal_keluar' => $tanggal_keluar,
+        'supplier' => $supplier,
+        'barang' => $barang,
+        'kategori' => $kategori,
+        'satuan' => $satuan,
+        'jumlah' => $jumlah
+      );
+      $this->M_admin->insert('tb_barang_keluar', $data);
+      $this->session->set_flashdata('msg_berhasil_keluar', 'Data Berhasil Keluar');
+      redirect(base_url('admin/tabel_barang_masuk'));
+    } else {
+      $this->load->view('perpindahan_barang/form_update/');
+    }
+  }
+  ####################################
+  // END DATA MASUK KE DATA KELUAR
+  ####################################
+
+
+  ####################################
+  // DATA BARANG KELUAR
+  ####################################
+
+  public function tabel_barang_keluar()
+  {
+    $data['list_data'] = $this->M_admin->select('tb_barang_keluar');
+    $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    $this->load->view('admin/tabel/tabel_barang_keluar', $data);
+  }
 }
