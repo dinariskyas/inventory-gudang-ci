@@ -195,18 +195,56 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
               <div class="inner">
+                <?php if (!empty($stokBarangMasuk)) { ?>
+                  <?php foreach ($stokBarangMasuk as $d) { ?>
+                    <h3><?= $d->jumlah ?></h3>
+                  <?php } ?>
+                <?php } else { ?>
+                  <h3>0</h3>
+                <?php } ?>
+                <p>Stok Barang Gudang</p>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="<?= base_url('admin/tabel_barang_masuk') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- Small boxes (Stat box) -->
+          <!-- ./col -->
           <div class="row">
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
-              <div class="small-box bg-aqua">
+              <div class="small-box bg-green">
                 <div class="inner">
+                  <?php if (!empty($stokBarangKeluar)) { ?>
+                    <?php foreach ($stokBarangKeluar as $d) { ?>
+                      <h3><?= $d->jumlah ?></h3>
+                    <?php } ?>
+                  <?php } else { ?>
+                    <h3>0</h3>
+                  <?php } ?>
+                  <p>Stok Barang Keluar</p>
                 </div>
-                <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="<?= base_url('admin/tabel_barang_keluar') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <?php if (!empty($dataUser)) { ?>
+                    <h3><?= $dataUser ?></h3>
+                  <?php } ?>
+                  <p>Users</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="<?= base_url('admin/users') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div>
           </div>

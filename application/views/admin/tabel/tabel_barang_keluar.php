@@ -145,7 +145,7 @@
               <li><a href="<?= base_url('admin/form_satuan') ?>"><i class="fa fa-circle-o"></i> Tambah Data Satuan</a></li>
             </ul>
           </li>
-          <li class="treeview ">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-table"></i> <span>Tables</span>
               <span class="pull-right-container">
@@ -154,7 +154,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="<?= base_url('admin/tabel_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
-              <li><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
+              <li class="active"><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
               <li><a href="<?= base_url('admin/tabel_barang') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
               <li><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
               <li><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
@@ -222,6 +222,7 @@
                       <th>Kategori</th>
                       <th>Satuan</th>
                       <th>Jumlah</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -238,6 +239,7 @@
                           <td><?= $dd->kategori ?></td>
                           <td><?= $dd->satuan ?></td>
                           <td><?= $dd->jumlah ?></td>
+                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $dd->id_barang_keluar) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
                           <!-- <td><a type="button" class="btn btn-danger btn-report" href="<?= base_url('report/barangKeluar/' . $dd->id_barang_masuk . '/' . $dd->tanggal_keluar) ?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td> -->
                     </tr>
                     <?php $no++; ?>

@@ -712,6 +712,13 @@ class Admin extends CI_Controller
     $this->load->view('admin/perpindahan_barang/form_update', $data);
   }
 
+  public function delete_barang_keluar($id_barang_keluar)
+  {
+    $where = array('id_barang_keluar' => $id_barang_keluar);
+    $this->M_admin->delete('tb_barang_keluar', $where);
+    redirect(base_url('admin/tabel_barang_keluar'));
+  }
+
   public function proses_data_keluar()
   {
     $this->form_validation->set_rules('tanggal_keluar', 'Tanggal Keluar', 'trim|required');
