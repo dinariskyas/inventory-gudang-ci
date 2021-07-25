@@ -235,7 +235,7 @@
 
       <i class="fa fa-key"></i>
 
-      <?php echo anchor(base_url('login'), 'Log In') ?><br>
+      Already Have an Account?<?php echo anchor(base_url('login'), ' Login Here') ?><br>
 
       <!-- <a href="#">Forgot your password?</a> -->
 

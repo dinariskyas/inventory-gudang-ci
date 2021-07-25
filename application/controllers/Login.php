@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Jakarta');
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Login extends CI_Controller
@@ -55,7 +56,7 @@ class Login extends CI_Controller
 
 						$this->session->set_userdata($data_session);
 
-						$this->M_login->edit_user(['username' => $username], ['last_login' => date('d-m-Y G:i')]);
+						$this->M_login->edit_user(['username' => $username], ['last_login' => date('d-m-Y g:i a')]);
 
 						if ($isi->role == 1) {
 							redirect(base_url('admin'));

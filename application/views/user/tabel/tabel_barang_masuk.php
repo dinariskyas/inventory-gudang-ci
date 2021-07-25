@@ -1,14 +1,13 @@
 <br><br><br>
-<div class="container">
-  <h2 class="tex-center">Tabel Barang Keluar</h2>
+<div class="container" style="margin: 2em auto;">
+  <h2 class="tex-center">Tabel Barang Masuk</h2>
   <br>
-  <table class="table table-bordered table-striped" style="margin: 2em auto;" id="tabel_barang_keluar">
+  <table class="table table-bordered table-striped" style="margin: 2em auto;" id="tabel_barang_masuk">
     <thead>
       <tr>
         <th>No</th>
         <th>ID_Transaksi</th>
-        <th>Tanggal Masuk</th>
-        <th>Tanggal Keluar</th>
+        <th>Tanggal</th>
         <th>Supplier</th>
         <th>Nama Barang</th>
         <th>Kategori</th>
@@ -23,8 +22,7 @@
           <?php foreach ($list_data as $dd) : ?>
             <td><?= $no ?></td>
             <td><?= $dd->id_barang_masuk ?></td>
-            <td><?= $dd->tanggal_masuk ?></td>
-            <td><?= $dd->tanggal_keluar ?></td>
+            <td><?= $dd->tanggal ?></td>
             <td><?= $dd->supplier ?></td>
             <td><?= $dd->barang ?></td>
             <td><?= $dd->kategori ?></td>
@@ -39,10 +37,9 @@
     </tbody>
   </table>
 </div>
-</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('#tabel_barang_keluar').DataTable();
+    $('#tabel_barang_masuk').DataTable();
   });
 </script>

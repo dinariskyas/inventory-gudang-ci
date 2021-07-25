@@ -172,7 +172,7 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Input Satuan Barang
+          Input Data Satuan
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -190,7 +190,7 @@
               <!-- general form elements -->
               <div class="box box-primary" style="width:94%;">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-archive" aria-hidden="true"></i> Tambah Satuan Barang</h3>
+                  <h3 class="box-title"><i class="fa fa-archive" aria-hidden="true"></i> Tambah Data Satuan</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

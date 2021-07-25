@@ -218,7 +218,7 @@
       <?php } else {
         redirect(base_url());
       } ?>
-      <?php echo anchor(base_url('login/register'), 'Register') ?><br>
+      Don't have an account? <?php echo anchor(base_url('login/register'), ' Register Here') ?><br>
       <!-- <a href="#">Forgot your password?</a> -->
       <button>
         <!-- <i class="spinner"></i> -->

@@ -227,9 +227,7 @@
                       <th>Kategori</th>
                       <th>Satuan</th>
                       <th>Jumlah</th>
-                      <th>Update</th>
-                      <th>Delete</th>
-                      <th>Keluarkan</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -245,9 +243,10 @@
                           <td><?= $dd->kategori ?></td>
                           <td><?= $dd->satuan ?></td>
                           <td><?= $dd->jumlah ?></td>
-                          <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-                          <td><a type="button" class="btn btn-success btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $dd->id_barang_masuk) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"></i></a></td>
+                          <th>
+                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
+                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $dd->id_barang_masuk) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-timees-circle" aria-hidden="true"> Delete</i> </a>
+                            <a type="button" class="btn btn-warning btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $dd->id_barang_masuk) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"> Keluarkan</i></a>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>

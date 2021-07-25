@@ -59,14 +59,12 @@
         <a class="navbar-brand" href="<?= base_url('user') ?>"></a>
       </div>
       <ul class="nav navbar-nav mr-auto">
-        <!-- <li><a class="nav-link" href="#">Home</a></li> -->
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-database" aria-hidden="true"></i> Tabel <span class="caret"></span></a></li>
-        <ul class="dropdown-menu">
-          <li><a href="<?= base_url('user/tabel_barang_masuk'); ?>">Tabel Barang Masuk</a></li>
-          <li><a href="<?= base_url('user/tabel_barangkeluar'); ?>">Tabel Barang Keluar</a></li>
-        </ul>
-        <!-- <li><a class="nav-link" href="#"><i class="fa fa-book" aria-hidden="true"></i> Page 2</a></li>
-            <li><a class="nav-link" href="#"><i class="fa fa-address-book" aria-hidden="true"></i> Page 3</a></li> -->
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-database" aria-hidden="true"></i> Tabel <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?= base_url('user/tabel_barang_masuk'); ?>">Tabel Barang Masuk</a></li>
+            <li><a href="<?= base_url('user/tabel_barang_keluar'); ?>">Tabel Barang Keluar</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a class="nav-link">Last Login : <?= $this->session->userdata('last_login') ?></a></li>

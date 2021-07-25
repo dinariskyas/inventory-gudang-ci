@@ -196,7 +196,7 @@
                         <!-- /.box -->
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Stok Barang Masuk</h3>
+                                <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Barang</h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -208,15 +208,14 @@
                                     </div>
                                 <?php } ?>
 
-                                <a href="<?= base_url('admin/form_barang') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data</a>
+                                <a href="<?= base_url('admin/form_barang') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Barang</a>
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Kode Barang</th>
                                             <th>Nama Barang</th>
-                                            <th>Update</th>
-                                            <th>Delete</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -227,8 +226,10 @@
                                                     <td><?= $no ?></td>
                                                     <td><?= $dd->kd_barang ?></td>
                                                     <td><?= $dd->nama_barang ?></td>
-                                                    <td><a type="button" class="btn btn-info" href="<?= base_url('admin/update_barang/' . $dd->id_barang) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-                                                    <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_satuan/' . $dd->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                                    <th>
+                                                        <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang/' . $dd->id_barang) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
+                                                        <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_satuan/' . $dd->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
+                                                    </th>
                                         </tr>
                                         <?php $no++; ?>
                                     <?php endforeach; ?>

@@ -212,7 +212,7 @@
 
                     <div class="box-body">
                       <?php foreach ($list_data as $d) { ?>
-                        <input type="hidden" name="id" value="<?= $d->id_user ?>">
+                        <input type="hidden" name="id_user" value="<?= $d->id_user ?>">
                         <div class="form-group" style="display:block;">
                           <label for="username" style="width:87%;margin-left: 0px;">Username</label>
                           <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" required="" class="form-control" id="username" value="<?= $d->username ?>">

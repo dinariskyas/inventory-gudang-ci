@@ -197,7 +197,7 @@
             <!-- /.box -->
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Stok Barang Masuk</h3>
+                <h3 class="box-title"><i class="fa fa-table" aria-hidden="true"></i> Stok Barang Keluar</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -222,7 +222,7 @@
                       <th>Kategori</th>
                       <th>Satuan</th>
                       <th>Jumlah</th>
-                      <th>Delete</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -239,7 +239,7 @@
                           <td><?= $dd->kategori ?></td>
                           <td><?= $dd->satuan ?></td>
                           <td><?= $dd->jumlah ?></td>
-                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $dd->id_barang_keluar) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $dd->id_barang_keluar) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
                           <!-- <td><a type="button" class="btn btn-danger btn-report" href="<?= base_url('report/barangKeluar/' . $dd->id_barang_masuk . '/' . $dd->tanggal_keluar) ?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td> -->
                     </tr>
                     <?php $no++; ?>
