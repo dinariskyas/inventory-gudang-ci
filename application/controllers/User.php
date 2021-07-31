@@ -19,6 +19,7 @@ class User extends CI_Controller
       $this->load->view('user/templates/footer.php');
     }else {
       $this->load->view('login/login');
+
     }
   }
 
@@ -102,5 +103,6 @@ class User extends CI_Controller
     $this->load->view('user/tabel/tabel_barang_keluar',$data);
     $this->load->view('user/templates/footer.php');
   }
+
 
 }

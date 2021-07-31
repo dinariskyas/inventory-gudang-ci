@@ -607,12 +607,11 @@ class Admin extends CI_Controller
 
   public function update_barang_masuk($id_barang_masuk)
   {
-    $where = array('id_barang_masuk' => $id_barang_masuk);
-    $data['data_barang_masuk_update'] = $this->M_admin->get_data('tb_barang_masuk', $where);
-    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
-    $data['list_kategori'] = $this->M_admin->select('tb_kategori');
-    $data['list_barang'] = $this->M_admin->select('tb_barang');
-    $data['list_supplier'] = $this->M_admin->select('tb_supplier');
+    $data['barang_masuk'] = $this->M_admin->getBarangMasukByID($id_barang_masuk);
+    $data['satuan'] = $this->M_admin->selectSatuan();
+    $data['kategori'] = $this->M_admin->selectKategori();
+    $data['barang'] = $this->M_admin->selectBarang();
+    $data['supplier'] = $this->M_admin->selectSupplier();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
     $this->load->view('admin/form_barang_masuk/form_update', $data);
   }

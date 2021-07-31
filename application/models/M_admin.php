@@ -102,8 +102,13 @@ class M_admin extends CI_Model
   }
   
 
-
+  public function getBarangMasukByID($id_barang_masuk)
+  {
+    return $this->db->get_where('tb_barang_masuk', ['id_barang_masuk' => $id_barang_masuk])->row_array();
+  }
 }
+
+  
 
 
 
