@@ -37,9 +37,9 @@
       <!-- Logo -->
       <a href="<?php echo base_url('admin') ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>Y</b>t</span>
+        <span class="logo-mini"><b></b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Yt</b>Flash</span>
+        <span class="logo-lg"><b></b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">

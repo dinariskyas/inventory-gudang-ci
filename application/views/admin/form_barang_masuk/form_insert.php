@@ -218,41 +218,41 @@
                       </div>
                       <div class="form-group">
                         <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
-                        <input type="text" name="tanggal" style="margin-left:64px;width:20%;display:inline;" class="form-control form_datetime" placeholder="Klik Disini">
+                        <input value="<?= set_value('tanggal', date('d/m/Y')); ?>" type="text" name="tanggal" style="margin-left:64px;width:20%;display:inline;" class="form-control form_datetime" placeholder="Klik Disini">
                       </div>
                       <div class="form-group" style="margin-bottom:40px;">
-                        <label for="supplier" style="margin-left:220px;display:inline;">Supplier</label>
-                        <select class="form-control" name="supplier" style="margin-left:60px;width:20%;display:inline;"">
-                          <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($list_supplier as $s) { ?>
-                            <option value=" <?= $s->nama_supplier ?>"><?= $s->nama_supplier ?></option>
+                        <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>
+                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;"">
+                          <option selected>-- Pilih --</option>
+                          <?php foreach ($supplier as $s) { ?>
+                            <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
                         <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="barang" style="width:73%;margin-left: 12px;">Barang</label>
-                        <select class="form-control" name="barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
+                        <label for="id_barang" style="width:73%;margin-left: 12px;">Barang</label>
+                        <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($list_barang as $b) { ?>
-                            <option value="<?= $b->nama_barang ?>"><?= $b->nama_barang ?></option>
+                          <?php foreach ($barang as $b) { ?>
+                            <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="kategori" style="width:73%;margin-left:34px;">Kategori</label>
-                        <select class="form-control" name="kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
+                        <label for="id_kategori" style="width:73%;margin-left:34px;">Kategori</label>
+                        <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($list_kategori as $k) { ?>
-                            <option value="<?= $k->nama_kategori ?>"><?= $k->nama_kategori ?></option>
+                          <?php foreach ($kategori as $k) { ?>
+                            <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="satuan" style="width:73%;margin-left:64px;">Satuan</label>
-                        <select class="form-control" name="satuan" style="width:90%;margin-left:64px;margin-right: 18px;">
+                        <label for="id_satuan" style="width:73%;margin-left:64px;">Satuan</label>
+                        <select class="form-control" name="id_satuan" style="width:90%;margin-left:64px;margin-right: 18px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($list_satuan as $s) { ?>
-                            <option value="<?= $s->nama_satuan ?>"><?= $s->nama_satuan ?></option>
+                          <?php foreach ($satuan as $s) { ?>
+                            <option value="<?= $s['id_satuan'] ?>"><?= $s['nama_satuan'] ?></option>
                           <?php } ?>
                         </select>
                       </div>

@@ -208,8 +208,8 @@
                   </div>
                 <?php } ?>
 
-                <a href="<?= base_url('admin/form_kategori') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Supplier</a>
-                <table id="example1" class="table table-bordered table-striped">
+                <a href="<?= base_url('admin/form_supplier') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Supplier</a>
+                <table id="e xample1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -230,7 +230,7 @@
                           <td><?= $dd->alamat ?></td>
                           <th>
                             <a type="button" class="btn btn-success" href="<?= base_url('admin/update_supplier/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a></td>
-                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_kategori/' . $dd->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
+                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_supplier/' . $dd->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
