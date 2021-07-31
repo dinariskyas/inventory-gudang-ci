@@ -218,7 +218,7 @@
                       </div>
                       <div class="form-group">
                         <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
-                        <input value="<?= set_value('tanggal', date('d/m/Y')); ?>" type="text" name="tanggal" style="margin-left:64px;width:20%;display:inline;" class="form-control form_datetime" placeholder="Klik Disini">
+                        <input value="<?= set_value('tanggal', date('d/m/Y')); ?>" type="date" name="tanggal" style="margin-left:64px;width:20%;display:inline;" class="form-control date" placeholder="Klik Disini">
                       </div>
                       <div class="form-group" style="margin-bottom:40px;">
                         <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>

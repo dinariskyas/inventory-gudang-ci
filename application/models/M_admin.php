@@ -137,4 +137,28 @@ class M_admin extends CI_Model
     $query = $this->db->query("select * from tb_satuan");
     return $query->result_array();
   }
+
+  public function selectSupplier()
+  {
+    $query = $this->db->get('tb_supplier');
+    return $query->result_array();
+  }
+
+  public function selectBarang()
+  {
+    $query = $this->db->get('tb_barang');
+    return $query->result_array();
+  }
+
+  public function selectKategori()
+  {
+    $query = $this->db->get('tb_kategori');
+    return $query->result_array();
+  }
+
+  public function selectSatuan()
+  {
+    $query = $this->db->get('tb_satuan');
+    return $query->result_array();
+  }
 }
