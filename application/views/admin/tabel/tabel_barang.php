@@ -228,7 +228,7 @@
                                                     <td><?= $dd->nama_barang ?></td>
                                                     <th>
                                                         <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang/' . $dd->id_barang) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
-                                                        <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_satuan/' . $dd->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
+                                                        <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang/' . $dd->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
                                                     </th>
                                         </tr>
                                         <?php $no++; ?>

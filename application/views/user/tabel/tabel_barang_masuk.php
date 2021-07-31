@@ -21,13 +21,13 @@
           <?php $no = 1; ?>
           <?php foreach ($list_data as $dd) : ?>
             <td><?= $no ?></td>
-            <td><?= $dd->id_barang_masuk ?></td>
-            <td><?= $dd->tanggal ?></td>
-            <td><?= $dd->supplier ?></td>
-            <td><?= $dd->barang ?></td>
-            <td><?= $dd->kategori ?></td>
-            <td><?= $dd->satuan ?></td>
-            <td><?= $dd->jumlah ?></td>
+            <td><?= $dd['id_barang_masuk'] ?></td>
+            <td><?= $dd['tanggal'] ?></td>
+            <td><?= $dd['nama_supplier'] ?></td>
+            <td><?= $dd['nama_barang'] ?></td>
+            <td><?= $dd['nama_kategori'] ?></td>
+            <td><?= $dd['nama_satuan'] ?></td>
+            <td><?= $dd['jumlah'] ?></td>
       </tr>
       <?php $no++; ?>
     <?php endforeach; ?>

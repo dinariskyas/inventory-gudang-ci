@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
 {
@@ -12,12 +12,11 @@ class User extends CI_Controller
 
   public function index()
   {
-    if($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 0)
-    {
+    if ($this->session->userdata('status') == 'login' && $this->session->userdata('role') == 0) {
       $this->load->view('user/templates/header.php');
       $this->load->view('user/index');
       $this->load->view('user/templates/footer.php');
-    }else {
+    } else {
       $this->load->view('login/login');
 
     }
@@ -30,79 +29,76 @@ class User extends CI_Controller
 
   private function hash_password($password)
   {
-    return password_hash($password,PASSWORD_DEFAULT);
+    return password_hash($password, PASSWORD_DEFAULT);
   }
 
   public function setting()
   {
-      $data['token_generate'] = $this->token_generate();
-      $this->session->set_userdata($data);
+    $data['token_generate'] = $this->token_generate();
+    $this->session->set_userdata($data);
 
-      $this->load->view('user/templates/header.php');
-      $this->load->view('user/setting',$data);
-      $this->load->view('user/templates/footer.php');
+    $this->load->view('user/templates/header.php');
+    $this->load->view('user/setting', $data);
+    $this->load->view('user/templates/footer.php');
   }
 
   public function proses_new_password()
   {
-    $this->form_validation->set_rules('new_password','New Password','required');
-    $this->form_validation->set_rules('confirm_new_password','Confirm New Password','required|matches[new_password]');
+    $this->form_validation->set_rules('new_password', 'New Password', 'required');
+    $this->form_validation->set_rules('confirm_new_password', 'Confirm New Password', 'required|matches[new_password]');
 
-    if($this->form_validation->run() == TRUE)
-    {
-      if($this->session->userdata('token_generate') === $this->input->post('token'))
-      {
+    if ($this->form_validation->run() == TRUE) {
+      if ($this->session->userdata('token_generate') === $this->input->post('token')) {
         $username = $this->input->post('username');
         $new_password = $this->input->post('new_password');
 
         $data = array(
-            'password' => $this->hash_password($new_password)
+          'password' => $this->hash_password($new_password)
         );
 
         $where = array(
-            'id_user' =>$this->session->userdata('id_user')
+          'id_user' => $this->session->userdata('id_user')
         );
 
-        $this->M_user->update_password('tb_user',$where,$data);
+        $this->M_user->update_password('tb_user', $where, $data);
 
-        $this->session->set_flashdata('msg_berhasil','Password Telah Diganti');
+        $this->session->set_flashdata('msg_berhasil', 'Password Telah Diganti');
         redirect(base_url('user/setting'));
       }
-    }else {
+    } else {
       $this->load->view('user/setting');
     }
   }
 
   public function signout()
   {
-      session_destroy();
-      redirect(base_url());
+    session_destroy();
+    redirect(base_url());
   }
 
   ####################################
-        // DATA BARANG MASUK
+  // DATA BARANG MASUK
   ####################################
 
   public function tabel_barang_masuk()
   {
     $this->load->view('user/templates/header.php');
-    $data['list_data'] = $this->M_user->select('tb_barang_masuk');
-    $this->load->view('user/tabel/tabel_barang_masuk',$data);
+    $data['list_data'] = $this->M_user->getAllBarangMasuk();
+    $this->load->view('user/tabel/tabel_barang_masuk', $data);
     $this->load->view('user/templates/footer.php');
   }
 
 
   ####################################
-        // DATA BARANG KELUAR
+  // DATA BARANG KELUAR
   ####################################
 
   public function tabel_barang_keluar()
   {
     $this->load->view('user/templates/header.php');
     $data['list_data'] = $this->M_user->select('tb_barang_keluar');
-    $this->load->view('user/tabel/tabel_barang_keluar',$data);
+    $this->load->view('user/tabel/tabel_barang_keluar', $data);
     $this->load->view('user/templates/footer.php');
   }
-
 
 }

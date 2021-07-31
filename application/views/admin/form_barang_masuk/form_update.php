@@ -210,73 +210,71 @@
 
                     <div class="box-body">
                       <div class="form-group">
-                        <?php foreach ($data_barang_masuk_update as $d) { ?>
-                          <label for="id_barang_masuk" style="margin-left:220px;display:inline;">ID Transaksi</label>
-                          <input type="text" name="id_barang_masuk" style="margin-left:37px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $d->id_barang_masuk ?>">
+                        <label for="id_barang_masuk" style="margin-left:220px;display:inline;">ID Transaksi</label>
+                        <input type="text" name="id_barang_masuk" style="margin-left:37px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $barang_masuk['id_barang_masuk'] ?>">
                       </div>
                       <div class="form-group">
                         <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal</label>
-                        <input type="text" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $d->tanggal ?>">
+                        <input type="text" name="tanggal" style="margin-left:66px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $barang_masuk['tanggal'] ?>">
                       </div>
                       <div class="form-group" style="margin-bottom:40px;">
-                        <label for="supplier" style="margin-left:220px;display:inline;">Supplier</label>
-                        <select class="form-control" name="supplier" style="margin-left:60px;width:20%;display:inline;">
-                          <?php foreach ($list_supplier as $s) { ?>
-                            <?php if ($d->supplier == $b->nama_supplier) { ?>
-                              <option value=" <?= $s->nama_supplier ?>" selected=""><?= $s->nama_supplier ?></option>
+                        <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>
+                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;">
+                          <?php foreach ($supplier as $s) { ?>
+                            <?php if ($s['id_supplier'] == $barang_masuk['id_supplier']) { ?>
+                              <option value=" <?= $barang_masuk['id_supplier'] ?>" selected=""><?= $s['nama_supplier'] ?></option>
                             <?php } else { ?>
-                              <option value=" <?= $s->nama_supplier ?>"><?= $s->nama_supplier ?></option>
+                              <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="barang" style="width:73%;margin-left: 12px;">Barang</label>
-                        <select class="form-control" name="barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
-                          <?php foreach ($list_barang as $b) { ?>
-                            <?php if ($d->barang == $b->nama_barang) { ?>
-                              <option value="<?= $b->nama_barang ?>" selected=""><?= $b->nama_barang ?></option>
+                        <label for="id_barang" style="width:73%;margin-left: 12px;">Barang</label>
+                        <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
+                          <?php foreach ($barang as $b) { ?>
+                            <?php if ($b['id_barang'] == $barang_masuk['id_barang']) { ?>
+                              <option value="<?= $barang_masuk['id_barang'] ?>" selected=""><?= $b['nama_barang'] ?></option>
                             <?php } else { ?>
-                              <option value="<?= $b->nama_barang ?>"><?= $b->nama_barang ?></option>
+                              <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="kategori" style="width:73%;margin-left:34px;">Kategori</label>
-                        <select class="form-control" name="kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
-                          <?php foreach ($list_kategori as $k) { ?>
-                            <?php if ($d->kategori == $k->nama_kategori) { ?>
-                              <option value="<?= $k->nama_kategori ?>" selected=""><?= $k->nama_kategori ?></option>
+                        <label for="id_kategori" style="width:73%;margin-left:34px;">Kategori</label>
+                        <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
+                          <?php foreach ($kategori as $k) { ?>
+                            <?php if ($k['id_kategori'] == $barang_masuk['id_kategori']) { ?>
+                              <option value="<?= $barang_masuk['id_kategori'] ?>" selected=""><?= $k['nama_kategori'] ?></option>
                             <?php } else { ?>
-                              <option value="<?= $k->nama_kategori ?>"><?= $k->nama_kategori ?></option>
+                              <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
-                        <label for="satuan" style="width:73%;margin-left:64px;">Satuan</label>
-                        <select class="form-control" name="satuan" style="width:110%;margin-left:64px;margin-right: 18px;">
-                          <?php foreach ($list_satuan as $s) { ?>
-                            <?php if ($d->satuan == $s->nama_satuan) { ?>
-                              <option value="<?= $s->nama_satuan ?>" selected=""><?= $s->nama_satuan ?></option>
+                        <label for="id_satuan" style="width:73%;margin-left:64px;">Satuan</label>
+                        <select class="form-control" name="id_satuan" style="width:110%;margin-left:64px;margin-right: 18px;">
+                          <?php foreach ($satuan as $st) { ?>
+                            <?php if ($st['id_satuan'] == $barang_masuk['id_satuan']) { ?>
+                              <option value="<?= $barang_masuk['id_satuan'] ?>" selected=""><?= $st['nama_satuan'] ?></option>
                             <?php } else { ?>
-                              <option value="<?= $s->nama_satuan ?>"><?= $s->nama_satuan ?></option>
+                              <option value="<?= $st['id_satuan'] ?>"><?= $st['nama_satuan'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="jumlah" style="width:73%;margin-left:94px;">Jumlah</label>
-                        <input type="number" name="jumlah" style="width:41%;margin-left:94px;margin-right:18px;" class="form-control" id="jumlah" value="<?= $d->jumlah ?>">
+                        <input type="number" name="jumlah" style="width:41%;margin-left:94px;margin-right:18px;" class="form-control" id="jumlah" value="<?= $barang_masuk['jumlah'] ?>">
                       </div>
-                    <?php } ?>
-                    <!-- /.box-body -->
+                      <!-- /.box-body -->
 
-                    <div class="box-footer" style="width:93%;">
-                      <a type="button" class="btn btn-default" style="width:10%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
-                      <button type="submit" style="width:20%;margin-left:689px;" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>&nbsp;&nbsp;&nbsp;
-                    </div>
+                      <div class="box-footer" style="width:93%;">
+                        <a type="button" class="btn btn-default" style="width:10%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+                        <button type="submit" style="width:20%;margin-left:689px;" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>&nbsp;&nbsp;&nbsp;
+                      </div>
                   </form>
                 </div>
               </div>
