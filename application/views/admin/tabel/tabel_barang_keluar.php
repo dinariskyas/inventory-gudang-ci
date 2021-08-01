@@ -234,9 +234,9 @@
                           <td><?= $dd['id_barang_masuk'] ?></td>
                           <td><?= $dd['tanggal_masuk'] ?></td>
                           <td><?= $dd['tanggal_keluar'] ?></td>
-                          <td><?= $dd['id_supplier'] ?></td>
-                          <td><?= $dd['id_barang'] ?></td>
-                          <td><?= $dd['id_kategori'] ?></td>
+                          <td><?= $dd['nama_supplier'] ?></td>
+                          <td><?= $dd['nama_barang'] ?></td>
+                          <td><?= $dd['nama_kategori'] ?></td>
                           <td><?= $dd['id_satuan'] ?></td>
                           <td><?= $dd['jumlah'] ?></td>
                           <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $dd['id_barang_keluar']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>

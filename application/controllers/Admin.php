@@ -660,10 +660,10 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Ditambahkan');
       redirect(base_url('admin/form_barang_masuk'));
     } else {
-       $data['satuan'] = $this->M_admin->getAllSatuan();
-    $data['kategori'] = $this->M_admin->getAllKategori();
-    $data['barang'] = $this->M_admin->getAllBarang();
-    $data['supplier'] = $this->M_admin->getAllSupplier();
+      $data['satuan'] = $this->M_admin->getAllSatuan();
+      $data['kategori'] = $this->M_admin->getAllKategori();
+      $data['barang'] = $this->M_admin->getAllBarang();
+      $data['supplier'] = $this->M_admin->getAllSupplier();
       $this->load->view('admin/form_barang_masuk/form_insert', $data);
     }
   }
@@ -769,8 +769,9 @@ class Admin extends CI_Controller
 
   public function tabel_barang_keluar()
   {
-    $data['list_data'] = $this->M_admin->getAllBarangKeluar('tb_barang_keluar');
+    $data['list_data'] = $this->M_admin->getAllBarangKeluar();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+    var_dump($data['list_data']);
     $this->load->view('admin/tabel/tabel_barang_keluar', $data);
   }
 }

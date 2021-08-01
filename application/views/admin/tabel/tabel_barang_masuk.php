@@ -215,7 +215,33 @@
                   </div>
                 <?php } ?>
 
+
                 <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
+                <br><br>
+                <table cellspacing="5" cellpadding="5">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="form-group" style="display:inline-block;">
+                          <label for="tanggal" style="margin-left:0px;display:inline;">Tanggal</label>
+                          <input value="<?= set_value('tanggal', date('d/m/Y')); ?>" type="date" id="search_date" name="search_date" style="margin-left:10px;width:66%;display:inline;" class="form-control date" placeholder="Klik Disini">
+                        </div>
+                        <div class="form-group" style="display:inline-block;">
+                          <!-- <input type="text" name="search_supplier" style="width:90%;margin-right: 67px;" class="form-control" id="search_supplier" placeholder="Search Supplier"> -->
+                          <label for="id_supplier" style="margin-left:0px;display:inline;">Supplier</label>
+                          <select id="search_supplier" class="form-control" name="search_supplier" style="margin-left:10px;width:52%;display:inline;">
+                            <option selected>-- Pilih --</option>
+                            <?php foreach ($supplier as $s) { ?>
+                              <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
+                            <?php } ?>
+                          </select>
+                        </div>
+                        <a style="display:inline-block;margin-left:10px;" type="button" class="btn btn-warning" id="search" name="search"><i class="fa fa-search" aria-hidden="true"></i> Cari</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
@@ -327,6 +353,54 @@
         'autoWidth': false
       })
     });
+
+    // var end = $('#search_date').val();
+    // $('#search_date').datetimepicker();
+    var date = ""
+    // This will update the "end" variable as it changes.
+    $(document).on('change', '#search_date', function() {
+      date = $(this).val();
+      // filterDate(date)
+      console.log(date);
+    });
+
+    // $('#search_supplier').on('keyup click', function() {
+    //   console.log(document.getElementById('search_supplier').value)
+    //   filterGlobal()
+    //   // $('#example1').DataTable().search(
+    //   //   document.getElementById('id_transaksi').value
+    //   // ).draw();
+    // });
+
+    // $('#search_date').on('change', function() {
+    //   //ways to retrieve selected option and text outside handler
+    //   // filterSupplier($(this).find('option').filter(':selected').text())
+    //   var date = new Date($('#search_date').val());
+    //   var day = date.getDate();
+    //   var month = date.getMonth() + 1;
+    //   var year = date.getFullYear();
+
+    //   filterSupplier([year, month, day].join('-'))
+    //   console.log([year, month, day].join('-'))
+    // });
+
+    document.getElementById("search").onclick = function() {
+      filterSupplier($('#search_supplier').find('option').filter(':selected').text())
+      filterDate(date)
+      return false;
+    };
+
+    function filterDate(i) {
+      $('#example1').DataTable().column(2).search(
+        i
+      ).draw();
+    }
+
+    function filterSupplier(i) {
+      $('#example1').DataTable().column(3).search(
+        i
+      ).draw();
+    }
   </script>
 </body>
 
