@@ -278,30 +278,9 @@
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
 
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
 
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box 202185670291-->
-
           </div>
         </div>
         <!--/.col (right) -->

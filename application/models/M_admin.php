@@ -143,27 +143,18 @@ class M_admin extends CI_Model
     return $query->result_array();
   }
 
-  public function selectSupplier()
+  // Barang Keluar
+  public function getAllBarangKeluar()
   {
-    $query = $this->db->get('tb_supplier');
-    return $query->result_array();
-  }
+    //atau bisa juga menggunakan code berikut
+    $this->db->select('*');
+    $this->db->from('tb_barang_keluar bk');
+    $this->db->join('tb_supplier s', 's.id_supplier = bk.id_supplier');
+    $this->db->join('tb_barang b', 'b.id_barang = bk.id_barang');
+    $this->db->join('tb_kategori k', 'k.id_kategori = bk.id_kategori');
+    $this->db->join('tb_satuan sa', 'sa.id_satuan = bk.id_satuan');
 
-  public function selectBarang()
-  {
-    $query = $this->db->get('tb_barang');
-    return $query->result_array();
-  }
-
-  public function selectKategori()
-  {
-    $query = $this->db->get('tb_kategori');
-    return $query->result_array();
-  }
-
-  public function selectSatuan()
-  {
-    $query = $this->db->get('tb_satuan');
+    $query = $this->db->get();
     return $query->result_array();
   }
 }
