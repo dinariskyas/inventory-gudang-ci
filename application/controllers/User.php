@@ -96,7 +96,7 @@ class User extends CI_Controller
   public function tabel_barang_keluar()
   {
     $this->load->view('user/templates/header.php');
-    $data['list_data'] = $this->M_user->select('tb_barang_keluar');
+    $data['list_data'] = $this->M_user->getAllBarangKeluar();
     $this->load->view('user/tabel/tabel_barang_keluar', $data);
     $this->load->view('user/templates/footer.php');
   }
