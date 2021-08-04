@@ -363,27 +363,7 @@
       // filterDate(date)
       console.log(date);
     });
-
-    // $('#search_supplier').on('keyup click', function() {
-    //   console.log(document.getElementById('search_supplier').value)
-    //   filterGlobal()
-    //   // $('#example1').DataTable().search(
-    //   //   document.getElementById('id_transaksi').value
-    //   // ).draw();
-    // });
-
-    // $('#search_date').on('change', function() {
-    //   //ways to retrieve selected option and text outside handler
-    //   // filterSupplier($(this).find('option').filter(':selected').text())
-    //   var date = new Date($('#search_date').val());
-    //   var day = date.getDate();
-    //   var month = date.getMonth() + 1;
-    //   var year = date.getFullYear();
-
-    //   filterSupplier([year, month, day].join('-'))
-    //   console.log([year, month, day].join('-'))
-    // });
-
+    
     document.getElementById("search").onclick = function() {
       filterSupplier($('#search_supplier').find('option').filter(':selected').text())
       filterDate(date)

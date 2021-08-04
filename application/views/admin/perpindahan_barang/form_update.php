@@ -225,7 +225,7 @@
                       </div>
                       <div class="form-group" style="margin-bottom:40px;">
                         <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>
-                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;">
+                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;" readonly="readonly">
                           <?php foreach ($supplier as $s) { ?>
                             <?php if ($s['id_supplier'] == $list_data['id_supplier']) { ?>
                               <option value=" <?= $list_data['id_supplier'] ?>" selected=""><?= $s['nama_supplier'] ?></option>
@@ -237,7 +237,7 @@
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_barang" style="width:73%;margin-left: 12px;">Barang</label>
-                        <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;;">
+                        <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;" readonly="readonly">
                           <?php foreach ($barang as $b) { ?>
                             <?php if ($b['id_barang'] == $list_data['id_barang']) { ?>
                               <option value=" <?= $list_data['id_barang'] ?>" selected=""><?= $b['nama_barang'] ?></option>
@@ -249,7 +249,7 @@
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_kategori" style="width:73%;margin-left:34px;">Kategori</label>
-                        <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
+                        <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;" readonly="readonly">
                           <?php foreach ($kategori as $k) { ?>
                             <?php if ($k['id_kategori'] == $list_data['id_kategori']) { ?>
                               <option value="<?= $list_data['id_kategori'] ?>" selected=""><?= $k['nama_kategori'] ?></option>
@@ -261,7 +261,7 @@
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_satuan" style="width:73%;margin-left:64px;">Satuan</label>
-                        <select class="form-control" name="id_satuan" style="width:110%;margin-left:64px;margin-right: 18px;">
+                        <select class="form-control" name="id_satuan" style="width:110%;margin-left:64px;margin-right: 18px;" readonly="readonly">
                           <?php foreach ($satuan as $sa) { ?>
                             <?php if ($sa['id_satuan'] == $list_data['id_satuan']) { ?>
                               <option value="<?= $list_data['id_satuan'] ?>" selected=""><?= $sa['nama_satuan'] ?></option>

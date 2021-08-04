@@ -771,7 +771,7 @@ class Admin extends CI_Controller
   {
     $data['list_data'] = $this->M_admin->getAllBarangKeluar();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
-    var_dump($data['list_data']);
+    // var_dump($data['list_data']);
     $this->load->view('admin/tabel/tabel_barang_keluar', $data);
   }
 }
