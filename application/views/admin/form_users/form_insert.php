@@ -176,7 +176,7 @@
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Forms</a></li>
-          <li class="active">Satuan Barang</li>
+          <li class="active">User</li>
         </ol>
       </section>
 
@@ -195,6 +195,7 @@
                 <!-- form start -->
                 <div class="container">
                   <form action="<?= base_url('admin/proses_tambah_user') ?>" role="form" method="post">
+
                     <?php if ($this->session->flashdata('msg_berhasil')) { ?>
                       <div class="alert alert-success alert-dismissible" style="width:91%">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

@@ -241,7 +241,7 @@
                       <label for="username" class="col-sm-2 control-label">Open Picture</label>
 
                       <div class="col-sm-10">
-                        <input type="file" name="userpicture" class="form-control" id="username">
+                        <input type="file" name="userpicture" class="form-control" id="username_user">
                       </div>
                     </div>
                     <?php if (isset($token_generate)) { ?>

@@ -79,7 +79,8 @@ class Admin extends CI_Controller
         redirect(base_url('admin/profile'));
       }
     } else {
-      $this->load->view('admin/profile');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/profile', $data);
     }
   }
 
@@ -127,7 +128,6 @@ class Admin extends CI_Controller
         'nama_file' => $nama_file,
         'ukuran_file' => $ukuran_file
       );
-
       $this->M_admin->update('tb_upload_gambar_user', $data, $where);
       $this->session->set_flashdata('msg_berhasil_gambar', 'Gambar Berhasil Di Upload');
       redirect(base_url('admin/profile'));
@@ -153,7 +153,7 @@ class Admin extends CI_Controller
 
   public function form_user()
   {
-    $data['list_satuan'] = $this->M_admin->select('tb_satuan');
+    $data['list_users'] = $this->M_admin->select('tb_user');
     $data['token_generate'] = $this->token_generate();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
     $this->session->set_userdata($data);
@@ -236,7 +236,8 @@ class Admin extends CI_Controller
         redirect(base_url('admin/users'));
       }
     } else {
-      $this->load->view('admin/form_users/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_users/form_update', $data);
     }
   }
   ####################################
@@ -293,7 +294,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data kategori Berhasil Ditambahkan');
       redirect(base_url('admin/form_kategori'));
     } else {
-      $this->load->view('admin/form_kategori/form_insert');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_kategori/form_insert', $data);
     }
   }
 
@@ -317,7 +319,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data kategori Berhasil Di Update');
       redirect(base_url('admin/tabel_kategori'));
     } else {
-      $this->load->view('admin/form_kategori/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_kategori/form_update', $data);
     }
   }
 
@@ -374,7 +377,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data satuan Berhasil Ditambahkan');
       redirect(base_url('admin/form_satuan'));
     } else {
-      $this->load->view('admin/form_satuan/form_insert');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_satuan/form_insert', $data);
     }
   }
 
@@ -398,7 +402,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data satuan Berhasil Di Update');
       redirect(base_url('admin/tabel_satuan'));
     } else {
-      $this->load->view('admin/form_satuan/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_satuan/form_update', $data);
     }
   }
 
@@ -461,7 +466,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data supplier Berhasil Ditambahkan');
       redirect(base_url('admin/form_supplier'));
     } else {
-      $this->load->view('admin/form_supplier/form_insert');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_supplier/form_insert', $data);
     }
   }
 
@@ -489,7 +495,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data supplier Berhasil Di Update');
       redirect(base_url('admin/tabel_supplier'));
     } else {
-      $this->load->view('admin/form_supplier/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_supplier/form_update', $data);
     }
   }
 
@@ -542,14 +549,15 @@ class Admin extends CI_Controller
 
       $data = array(
         'kd_barang' => $kd_barang,
-        'nama_barang'      => $nama_barang
+        'nama_barang' => $nama_barang
       );
       $this->M_admin->insert('tb_barang', $data);
 
       $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Ditambahkan');
       redirect(base_url('admin/form_barang'));
     } else {
-      $this->load->view('admin/form_barang/form_insert');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_barang/form_insert', $data);
     }
   }
 
@@ -573,7 +581,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Diupdate');
       redirect(base_url('admin/tabel_barang'));
     } else {
-      $this->load->view('admin/form_barang/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_barang/form_update', $data);
     }
   }
 
@@ -664,6 +673,7 @@ class Admin extends CI_Controller
       $data['kategori'] = $this->M_admin->getAllKategori();
       $data['barang'] = $this->M_admin->getAllBarang();
       $data['supplier'] = $this->M_admin->getAllSupplier();
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
       $this->load->view('admin/form_barang_masuk/form_insert', $data);
     }
   }
@@ -695,7 +705,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Diupdate');
       redirect(base_url('admin/tabel_barang_masuk'));
     } else {
-      $this->load->view('admin/form_barang_masuk/form_update');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('admin/form_barang_masuk/form_update', $data);
     }
   }
 
@@ -756,7 +767,8 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil_keluar', 'Data Berhasil Keluar');
       redirect(base_url('admin/tabel_barang_masuk'));
     } else {
-      $this->load->view('perpindahan_barang/form_update/');
+      $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('name'));
+      $this->load->view('perpindahan_barang/form_update/', $data);
     }
   }
   ####################################
