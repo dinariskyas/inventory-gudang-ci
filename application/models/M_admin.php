@@ -65,11 +65,11 @@ class M_admin extends CI_Model
     $this->db->update($tabel, $data);
   }
 
-  public function get_data_gambar($tabel, $username)
+  public function get_data_gambar($tabel, $id_user)
   {
     $query = $this->db->select()
       ->from($tabel)
-      ->where('username_user', $username)
+      ->where('id_user', $id_user)
       ->get();
     return $query->result();
   }
@@ -90,11 +90,11 @@ class M_admin extends CI_Model
     return $query->num_rows();
   }
 
-  public function kecuali($tabel, $username)
+  public function kecuali($tabel, $id_user)
   {
     $query = $this->db->select()
       ->from($tabel)
-      ->where_not_in('username', $username)
+      ->where_not_in('id_user', $id_user)
       ->get();
 
     return $query->result();
@@ -156,5 +156,14 @@ class M_admin extends CI_Model
 
     $query = $this->db->get();
     return $query->result_array();
+  }
+
+  function cek_id_user()
+  {
+    $this->db->select("*");
+    $this->db->limit(1);
+    $this->db->order_by('id_user', 'DESC');
+    $this->db->from('tb_user');
+    return $this->db->get()->row();
   }
 }

@@ -38,4 +38,12 @@ class M_login extends CI_Model
     $this->db->where($where);
     return $this->db->update('tb_user', $data);
   }
+  
+  function cek_id_user(){
+    $this->db->select("*");
+    $this->db->limit(1);
+    $this->db->order_by('id_user', 'DESC');
+    $this->db->from('tb_user');
+    return $this->db->get()->row();
+  }
 }

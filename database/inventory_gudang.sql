@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Jul 2021 pada 06.33
+-- Waktu pembuatan: 05 Agu 2021 pada 19.22
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -51,21 +51,14 @@ INSERT INTO `tb_barang` (`id_barang`, `kd_barang`, `nama_barang`) VALUES
 CREATE TABLE `tb_barang_keluar` (
   `id_barang_keluar` int(11) NOT NULL,
   `id_barang_masuk` varchar(50) NOT NULL,
-  `tanggal_masuk` varchar(20) NOT NULL,
-  `tanggal_keluar` varchar(20) NOT NULL,
-  `supplier` varchar(50) NOT NULL,
-  `barang` varchar(100) NOT NULL,
-  `kategori` varchar(50) NOT NULL,
-  `satuan` varchar(50) NOT NULL,
+  `tanggal_masuk` date NOT NULL,
+  `tanggal_keluar` date NOT NULL,
+  `id_supplier` int(11) NOT NULL,
+  `id_barang` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `id_satuan` int(11) NOT NULL,
   `jumlah` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `tb_barang_keluar`
---
-
-INSERT INTO `tb_barang_keluar` (`id_barang_keluar`, `id_barang_masuk`, `tanggal_masuk`, `tanggal_keluar`, `supplier`, `barang`, `kategori`, `satuan`, `jumlah`) VALUES
-(17, 'WEST-202163759841', '0000-00-00', '22/07/2021', ' dfd', ' cba', 'mikrotik', 'pcs', '4');
 
 --
 -- Trigger `tb_barang_keluar`
@@ -167,7 +160,7 @@ INSERT INTO `tb_supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) 
 
 CREATE TABLE `tb_upload_gambar_user` (
   `id_upload_gambar_user` int(11) NOT NULL,
-  `username_user` varchar(100) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `nama_file` varchar(220) NOT NULL,
   `ukuran_file` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -176,11 +169,9 @@ CREATE TABLE `tb_upload_gambar_user` (
 -- Dumping data untuk tabel `tb_upload_gambar_user`
 --
 
-INSERT INTO `tb_upload_gambar_user` (`id_upload_gambar_user`, `username_user`, `nama_file`, `ukuran_file`) VALUES
-(2, 'admin', 'fan_art.jpg', '11.21'),
-(7, 'dina', 'nopic.png', '6.33'),
-(8, 'admin2', 'nopic.png', '6.33'),
-(9, 'admin1', 'nopic.png', '6.33');
+INSERT INTO `tb_upload_gambar_user` (`id_upload_gambar_user`, `id_user`, `nama_file`, `ukuran_file`) VALUES
+(10, 24, 'nopic.png', '6.33'),
+(11, 33, 'nopic.png', '6.33');
 
 -- --------------------------------------------------------
 
@@ -202,11 +193,9 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `email`, `password`, `role`, `last_login`) VALUES
-(24, 'admin', 'admin@gmail.com', '$2y$10$15o2ubViWPYAVZ0jlywqCex5uhA1ESshNG63u1TAtCw7NwTmRDSfK', 1, '31-07-2021 8:37 am'),
-(25, 'dina', 'dinarisky04@gmail.com', '$2y$10$NiURIj26onCikLj0ADrL9OfezIJXwCoKZQvu546p/hPRSHJbczqM6', 0, '30-07-2021 2:15 pm'),
-(29, 'admin2', 'admin.fenti@gmail.com', '$2y$10$Qj3WpvBE2IJIC62vayvJoOfU5Qc8Gg72Ea1PaHsfMUTHkuX5bxSP6', 1, '25-07-2021 8:33 pm'),
-(30, 'admin1', 'admin.agit@gmail.com', '$2y$10$2bnM.wIq2LidWcrFV.pQyeeAGOaW9XWhwB86o8cOWlQTG0zKwC4qe', 1, '25-07-2021 8:33 pm'),
-(31, '1', '1@gmail.com', '$2y$10$Cac1szE6YVkP3e0iG4wRn.eNDF433se9NSuYLp5/L4NOrxLe8ICzu', 0, '23-07-2021 11:31 pm');
+(24, 'admin', 'admin@gmail.com', '$2y$10$15o2ubViWPYAVZ0jlywqCex5uhA1ESshNG63u1TAtCw7NwTmRDSfK', 1, '06-08-2021 12:22 am'),
+(32, 'admin1', 'admin.agit@gmail.com', '$2y$10$x9puDn.f2YxqyLnJt8i4Gev36bXuIIxaU1wm0z/cSBNYf53OWTcg2', 1, ''),
+(33, 'user', 'user@gmail.com', '$2y$10$OlaROY.jWve//X62BjjUuO2NRQLssgBx5wdGaizGXTBMw7jfqkfZC', 0, '06-08-2021 12:13 am');
 
 --
 -- Indexes for dumped tables
@@ -222,7 +211,12 @@ ALTER TABLE `tb_barang`
 -- Indeks untuk tabel `tb_barang_keluar`
 --
 ALTER TABLE `tb_barang_keluar`
-  ADD PRIMARY KEY (`id_barang_keluar`);
+  ADD PRIMARY KEY (`id_barang_keluar`),
+  ADD KEY `id_supplier` (`id_supplier`),
+  ADD KEY `id_barang` (`id_barang`),
+  ADD KEY `id_kategori` (`id_kategori`),
+  ADD KEY `id_satuan` (`id_satuan`),
+  ADD KEY `id_barang_masuk` (`id_barang_masuk`);
 
 --
 -- Indeks untuk tabel `tb_barang_masuk`
@@ -256,7 +250,8 @@ ALTER TABLE `tb_supplier`
 -- Indeks untuk tabel `tb_upload_gambar_user`
 --
 ALTER TABLE `tb_upload_gambar_user`
-  ADD PRIMARY KEY (`id_upload_gambar_user`);
+  ADD PRIMARY KEY (`id_upload_gambar_user`),
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indeks untuk tabel `tb_user`
@@ -278,7 +273,7 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT untuk tabel `tb_barang_keluar`
 --
 ALTER TABLE `tb_barang_keluar`
-  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kategori`
@@ -302,17 +297,27 @@ ALTER TABLE `tb_supplier`
 -- AUTO_INCREMENT untuk tabel `tb_upload_gambar_user`
 --
 ALTER TABLE `tb_upload_gambar_user`
-  MODIFY `id_upload_gambar_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_upload_gambar_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_user` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `tb_barang_keluar`
+--
+ALTER TABLE `tb_barang_keluar`
+  ADD CONSTRAINT `tb_barang_keluar_ibfk_1` FOREIGN KEY (`id_supplier`) REFERENCES `tb_supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_barang_keluar_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `tb_barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_barang_keluar_ibfk_3` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_barang_keluar_ibfk_4` FOREIGN KEY (`id_satuan`) REFERENCES `tb_satuan` (`id_satuan`),
+  ADD CONSTRAINT `tb_barang_keluar_ibfk_5` FOREIGN KEY (`id_barang_masuk`) REFERENCES `tb_barang_masuk` (`id_barang_masuk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_barang_masuk`
@@ -322,6 +327,12 @@ ALTER TABLE `tb_barang_masuk`
   ADD CONSTRAINT `tb_barang_masuk_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `tb_barang` (`id_barang`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_barang_masuk_ibfk_3` FOREIGN KEY (`id_kategori`) REFERENCES `tb_kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_barang_masuk_ibfk_4` FOREIGN KEY (`id_satuan`) REFERENCES `tb_satuan` (`id_satuan`);
+
+--
+-- Ketidakleluasaan untuk tabel `tb_upload_gambar_user`
+--
+ALTER TABLE `tb_upload_gambar_user`
+  ADD CONSTRAINT `tb_upload_gambar_user_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

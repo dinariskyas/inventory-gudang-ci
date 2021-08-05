@@ -363,9 +363,12 @@
       // filterDate(date)
       console.log(date);
     });
-    
+
     document.getElementById("search").onclick = function() {
-      filterSupplier($('#search_supplier').find('option').filter(':selected').text())
+      var supplier = $('#search_supplier').find('option').filter(':selected').text();
+      if (supplier != "-- Pilih --") {
+        filterSupplier($('#search_supplier').find('option').filter(':selected').text())
+      }
       filterDate(date)
       return false;
     };

@@ -238,9 +238,7 @@
                       <!-- /.box-body -->
                       <?php if (isset($token_generate)) { ?>
                         <input type="hidden" name="token" class="form-control" value="<?= $token_generate ?>">
-                      <?php } else {
-                        redirect(base_url('admin/form_user'));
-                      } ?>
+                      <?php } ?>
 
                       <div class="box-footer" style="width:93%;">
                         <a type="button" class="btn btn-default" style="width:10%;margin-right:26%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>

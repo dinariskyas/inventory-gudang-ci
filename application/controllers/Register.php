@@ -43,14 +43,17 @@ class Register extends CI_Controller
           'password' => $this->hash_password($password)
         );
 
+        $this->M_login->insert('tb_user', $data);
+        
+        $data_user = $this->M_login->cek_id_user();
+        $id_user = $data_user->id_user;
+
         $dataUpload = array(
-          'id_upload_gambar_user'     => '',
-          'username_user' => $username,
+          'id_user' => $id_user,
           'nama_file' => 'nopic.png',
           'ukuran_file' => '6.33'
         );
 
-        $this->M_login->insert('tb_user', $data);
         $this->M_login->insert('tb_upload_gambar_user', $dataUpload);
 
         $this->session->set_flashdata('msg_terdaftar', 'Anda Berhasil Register');
