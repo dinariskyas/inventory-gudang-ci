@@ -167,5 +167,59 @@ class M_admin extends CI_Model
     return $this->db->get()->row();
   }
 
-  
+  //
+  public function getBarangMasuk($limit = null, $id_barang = null, $range = null)
+  {
+    $this->db->select('*');
+    $this->db->join('tb_supplier s', 's.id_supplier = bm.id_supplier');
+    $this->db->join('tb_barang b', 'b.id_barang = bm.id_barang');
+    $this->db->join('tb_kategori k', 'k.id_kategori = bm.id_kategori');
+    $this->db->join('tb_satuan sa', 'sa.id_satuan = bm.id_satuan');
+
+    if ($limit != null) {
+      $this->db->limit($limit);
+    }
+
+    if ($id_barang != null) {
+      $this->db->where('id_barang_masuk', $id_barang);
+    }
+
+    if ($range != null) {
+      $this->db->where('tanggal' . ' >=', $range['mulai']);
+      $this->db->where('tanggal' . ' <=', $range['akhir']);
+    }
+
+    $this->db->order_by('id_barang_masuk', 'DESC');
+    return $this->db->get('tb_barang_masuk bm')->result_array();
+  }
+
+  public function getBarangKeluar($limit = null, $id_barang = null, $range = null)
+  {
+    $this->db->select('*');
+    $this->db->join('tb_supplier s', 's.id_supplier = bk.id_supplier');
+    $this->db->join('tb_barang b', 'b.id_barang = bk.id_barang');
+    $this->db->join('tb_kategori k', 'k.id_kategori = bk.id_kategori');
+    $this->db->join('tb_satuan sa', 'sa.id_satuan = bk.id_satuan');
+
+    if ($limit != null) {
+      $this->db->limit($limit);
+    }
+    if ($id_barang != null) {
+      $this->db->where('id_barang_keluar', $id_barang);
+    }
+    if ($range != null) {
+      $this->db->where('tanggal_keluar' . ' >=', $range['mulai']);
+      $this->db->where('tanggal_keluar' . ' <=', $range['akhir']);
+    }
+    $this->db->order_by('id_barang_keluar', 'DESC');
+    return $this->db->get('tb_barang_keluar bk')->result_array();
+  }
+
+  public function laporan($table, $mulai, $akhir)
+  {
+    $tgl = $table == 'tb_barang_masuk' ? 'tanggal' : 'tanggal_keluar';
+    $this->db->where($tgl . ' >=', $mulai);
+    $this->db->where($tgl . ' <=', $akhir);
+    return $this->db->get($table)->result_array();
+  }
 }

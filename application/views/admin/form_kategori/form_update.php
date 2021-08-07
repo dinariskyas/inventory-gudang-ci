@@ -155,6 +155,11 @@
                         </ul>
                     </li>
                 </ul>
+                <li class="header">REPORT</li>
+          <li>
+            <a href="<?php echo base_url('admin/cetakLaporan') ?>">
+              <i class="fa fa-print" aria-hidden="true"></i> <span>Cetak Laporan</span></a>
+          </li>
                 <li class="header">LABELS</li>
                 <li>
                     <a href="<?php echo base_url('admin/profile') ?>">
