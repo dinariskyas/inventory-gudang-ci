@@ -166,4 +166,6 @@ class M_admin extends CI_Model
     $this->db->from('tb_user');
     return $this->db->get()->row();
   }
+
+  
 }

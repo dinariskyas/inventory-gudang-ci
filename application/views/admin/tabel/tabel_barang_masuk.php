@@ -217,6 +217,7 @@
 
 
                 <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
+                <a href="<?= base_url('admin/cetakLaporanBarangMasuk'); ?>" style="margin-bottom:10px;" type="button" class="btn btn-info"> <i class="fa fa-print" aria-hidden=" true"></i> Cetak Data</a>
                 <br><br>
                 <table cellspacing="5" cellpadding="5">
                   <tbody>

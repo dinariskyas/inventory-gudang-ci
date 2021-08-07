@@ -8,6 +8,7 @@ class Admin extends CI_Controller
   {
     parent::__construct();
     $this->load->model('M_admin');
+    $this->load->model('Cetak_model');
     $this->load->library('upload');
   }
 
@@ -44,7 +45,7 @@ class Admin extends CI_Controller
 
   public function token_generate()
   {
-    return $tokens = md5(uniqid(rand(), true));
+    return md5(uniqid(rand(), true));
   }
 
   private function hash_password($password)
@@ -629,6 +630,17 @@ class Admin extends CI_Controller
       'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'))
     );
     $this->load->view('admin/tabel/tabel_barang_masuk', $data);
+  }
+
+  public function cetakLaporanBarangMasuk()
+  {
+    $data['title'] = 'Laporan Barang Masuk';
+    $data['data'] = $this->Cetak_model->viewBarangMasuk();
+    $this->load->library('pdf');
+
+    $this->pdf->setPaper('A4', 'potrait');
+    $this->pdf->filename = "laporan_dosen.pdf";
+    $this->pdf->load_view('admin/tabel/laporan_barang_masuk', $data);
   }
 
   public function update_barang_masuk($id_barang_masuk)
