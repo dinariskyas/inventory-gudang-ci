@@ -1,5 +1,4 @@
-<br><br><br>
-<div class="container">
+<div class="container" style="margin: 2em auto;">
   <h2 class="tex-center">Tabel Barang Keluar</h2>
   <br>
   <table class="table table-bordered table-striped" style="margin: 2em auto;" id="tabel_barang_keluar">

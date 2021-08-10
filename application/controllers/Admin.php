@@ -8,7 +8,6 @@ class Admin extends CI_Controller
   {
     parent::__construct();
     $this->load->model('M_admin');
-    $this->load->model('Cetak_model');
     $this->load->library('upload');
   }
 

@@ -17,49 +17,23 @@
 
   <style>
     .nav-link {
-      color: rgba(255, 255, 255, .5);
-    }
-
-    .display-3 {
-      font-size: 4.5rem;
-      font-weight: 300;
-      line-height: 1.1;
-    }
-
-    .lead {
-      font-size: 1.25rem;
-      font-weight: 300;
-    }
-
-    .text-center {
-      text-align: center !important;
-    }
-
-    .jumbotron {
-      margin-bottom: 2rem;
-      background-color: #e9ecef;
-      border-radius: .3rem;
-    }
-
-    .mr-auto {
-      margin-right: auto !important;
-    }
-
-    .navbar-brand {
-      color: #fff;
+      color: rgba(255, 255, 255);
     }
   </style>
 </head>
 
 <body>
   <!-- navbar -->
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-expand-lg" style="background-color:	#2F4F4F">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="<?= base_url('user') ?>"></a>
       </div>
       <ul class="nav navbar-nav mr-auto">
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-database" aria-hidden="true"></i> Tabel <span class="caret"></span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-database" aria-hidden="true"></i> Tabel
+          </a>
           <ul class="dropdown-menu">
             <li><a href="<?= base_url('user/tabel_barang_masuk'); ?>">Tabel Barang Masuk</a></li>
             <li><a href="<?= base_url('user/tabel_barang_keluar'); ?>">Tabel Barang Keluar</a></li>

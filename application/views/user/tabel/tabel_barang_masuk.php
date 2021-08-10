@@ -1,4 +1,3 @@
-<br><br><br>
 <div class="container" style="margin: 2em auto;">
   <h2 class="tex-center">Tabel Barang Masuk</h2>
   <br>
