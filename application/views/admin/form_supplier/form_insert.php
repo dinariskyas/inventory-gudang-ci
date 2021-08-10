@@ -243,45 +243,19 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- /.box -->
-
-                            <!-- Form Element sizes -->
-
-                            <!-- /.box -->
-
-
-                            <!-- /.box -->
-
-                            <!-- Input addon -->
-
-                            <!-- /.box -->
-
                         </div>
-                        <!--/.col (left) -->
-                        <!-- right column -->
-                        <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-                        <!-- /.box -->
-                        <!-- general form elements disabled -->
-
-                        <!-- /.box -->
-
                     </div>
                 </div>
-                <!--/.col (right) -->
         </div>
-        <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b></b>
         </div>
         <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
     </div>
     <!-- ./wrapper -->

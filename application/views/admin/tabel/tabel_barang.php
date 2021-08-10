@@ -227,13 +227,13 @@
                                         <tr>
                                             <?php if (is_array($list_data)) { ?>
                                                 <?php $no = 1; ?>
-                                                <?php foreach ($list_data as $dd) : ?>
+                                                <?php foreach ($list_data as $data) : ?>
                                                     <td><?= $no ?></td>
-                                                    <td><?= $dd->kd_barang ?></td>
-                                                    <td><?= $dd->nama_barang ?></td>
+                                                    <td><?= $data->kd_barang ?></td>
+                                                    <td><?= $data->nama_barang ?></td>
                                                     <th>
-                                                        <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang/' . $dd->id_barang) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
-                                                        <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang/' . $dd->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
+                                                        <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang/' . $data->id_barang) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
+                                                        <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang/' . $data->id_barang) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
                                                     </th>
                                         </tr>
                                         <?php $no++; ?>
@@ -242,32 +242,19 @@
                                     <td colspan="7" align="center"><strong>Data Kosong</strong></td>
                                 <?php } ?>
                                     </tbody>
-                                    <!-- <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Kode Satuan</th>
-                  <th>Nama Satuan</th>
-                </tr>
-                </tfoot> -->
                                 </table>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-
-
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Version</b> 2.4.0
+                <b></b>
             </div>
             <strong>Copyright &copy; <?= date('Y') ?></strong>
-
         </footer>
     </div>
     <!-- ./wrapper -->

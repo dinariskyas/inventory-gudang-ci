@@ -256,9 +256,7 @@
             </div>
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>

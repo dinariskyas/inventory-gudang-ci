@@ -203,6 +203,8 @@ class Admin extends CI_Controller
           'role'         => $role,
         );
 
+        $this->M_admin->insert('tb_user', $data);
+
         $data_user = $this->M_admin->cek_id_user();
         $id_user = $data_user->id_user;
 
@@ -214,9 +216,6 @@ class Admin extends CI_Controller
         );
 
         $this->M_admin->insert('tb_upload_gambar_user', $dataUpload);
-
-        $this->M_admin->insert('tb_user', $data);
-
         $this->session->set_flashdata('msg_berhasil', 'User Berhasil Ditambahkan');
         redirect(base_url('admin/form_user'));
       }
@@ -280,7 +279,7 @@ class Admin extends CI_Controller
   {
     $uri = $this->uri->segment(3);
     $where = array('id_kategori' => $uri);
-    $data['data_kategori'] = $this->M_admin->get_data('tb_kategori', $where);
+    $data['list_kategori'] = $this->M_admin->get_data('tb_kategori', $where);
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_kategori/form_update', $data);
   }
@@ -363,7 +362,7 @@ class Admin extends CI_Controller
   {
     $uri = $this->uri->segment(3);
     $where = array('id_satuan' => $uri);
-    $data['data_satuan'] = $this->M_admin->get_data('tb_satuan', $where);
+    $data['list_satuan'] = $this->M_admin->get_data('tb_satuan', $where);
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_satuan/form_update', $data);
   }
@@ -446,7 +445,7 @@ class Admin extends CI_Controller
   {
     $uri = $this->uri->segment(3);
     $where = array('id_supplier' => $uri);
-    $data['data_supplier'] = $this->M_admin->get_data('tb_supplier', $where);
+    $data['list_supplier'] = $this->M_admin->get_data('tb_supplier', $where);
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_supplier/form_update', $data);
   }
@@ -539,7 +538,7 @@ class Admin extends CI_Controller
   {
     $uri = $this->uri->segment(3);
     $where = array('id_barang' => $uri);
-    $data['data_barang'] = $this->M_admin->get_data('tb_barang', $where);
+    $data['list_barang'] = $this->M_admin->get_data('tb_barang', $where);
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_barang/form_update', $data);
   }
@@ -611,10 +610,10 @@ class Admin extends CI_Controller
   public function form_barang_masuk()
   {
     $data['list_data'] = $this->M_admin->getAllBarangMasuk();
-    $data['supplier'] = $this->M_admin->getAllSupplier();
-    $data['barang'] = $this->M_admin->getAllBarang();
-    $data['kategori'] = $this->M_admin->getAllKategori();
-    $data['satuan'] = $this->M_admin->getAllSatuan();
+    $data['list_supplier'] = $this->M_admin->getAllSupplier();
+    $data['list_barang'] = $this->M_admin->getAllBarang();
+    $data['list_kategori'] = $this->M_admin->getAllKategori();
+    $data['list_satuan'] = $this->M_admin->getAllSatuan();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_barang_masuk/form_insert', $data);
   }
@@ -739,11 +738,11 @@ class Admin extends CI_Controller
 
   public function update_barang_masuk($id_barang_masuk)
   {
-    $data['barang_masuk'] = $this->M_admin->getBarangMasukByID($id_barang_masuk);
-    $data['satuan'] = $this->M_admin->getAllSatuan();
-    $data['kategori'] = $this->M_admin->getAllKategori();
-    $data['barang'] = $this->M_admin->getAllBarang();
-    $data['supplier'] = $this->M_admin->getAllSupplier();
+    $data['list_barang_masuk'] = $this->M_admin->getBarangMasukByID($id_barang_masuk);
+    $data['list_satuan'] = $this->M_admin->getAllSatuan();
+    $data['list_kategori'] = $this->M_admin->getAllKategori();
+    $data['list_barang'] = $this->M_admin->getAllBarang();
+    $data['list_supplier'] = $this->M_admin->getAllSupplier();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/form_barang_masuk/form_update', $data);
   }
@@ -788,10 +787,10 @@ class Admin extends CI_Controller
       $this->session->set_flashdata('msg_berhasil', 'Data Barang Berhasil Ditambahkan');
       redirect(base_url('admin/form_barang_masuk'));
     } else {
-      $data['satuan'] = $this->M_admin->getAllSatuan();
-      $data['kategori'] = $this->M_admin->getAllKategori();
-      $data['barang'] = $this->M_admin->getAllBarang();
-      $data['supplier'] = $this->M_admin->getAllSupplier();
+      $data['list_satuan'] = $this->M_admin->getAllSatuan();
+      $data['list_kategori'] = $this->M_admin->getAllKategori();
+      $data['list_barang'] = $this->M_admin->getAllBarang();
+      $data['list_supplier'] = $this->M_admin->getAllSupplier();
       $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
       $this->load->view('admin/form_barang_masuk/form_insert', $data);
     }
@@ -843,10 +842,10 @@ class Admin extends CI_Controller
     $uri = $this->uri->segment(3);
     $where = array('id_barang_masuk' => $uri);
     $data['list_data'] = $this->M_admin->get_data('tb_barang_masuk', $where);
-    $data['supplier'] = $this->M_admin->getAllSupplier();
-    $data['barang'] = $this->M_admin->getAllBarang();
-    $data['kategori'] = $this->M_admin->getAllKategori();
-    $data['satuan'] = $this->M_admin->getAllSatuan();
+    $data['list_satuan'] = $this->M_admin->getAllSatuan();
+    $data['list_kategori'] = $this->M_admin->getAllKategori();
+    $data['list_barang'] = $this->M_admin->getAllBarang();
+    $data['list_supplier'] = $this->M_admin->getAllSupplier();
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     $this->load->view('admin/perpindahan_barang/form_update', $data);
   }

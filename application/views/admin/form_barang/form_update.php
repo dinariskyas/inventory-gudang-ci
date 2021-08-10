@@ -204,7 +204,7 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <div class="container">
-                  <form action="<?= base_url('admin/proses_data_barang_masuk_update') ?>" role="form" method="post">
+                  <form action="<?= base_url('admin/proses_data_barang_update') ?>" role="form" method="post">
 
                     <?php if (validation_errors()) { ?>
                       <div class="alert alert-warning alert-dismissible">
@@ -214,65 +214,42 @@
                     <?php } ?>
 
                     <div class="box-body">
-                      <div class="form-group" style="display:inline-block;">
-                        <?php foreach ($data_barang as $d) { ?>
-                          <label for="kd_barang" style="width:73%;">Kode Barang</label>
-                          <input type="text" name="id_barang_masuk" style="width:90%;margin-right: 67px;" class="form-control" value="<?= $d->kd_barang ?>">
-                      </div>
-                      <div class="form-group" style="display:inline-block;">
-                        <label for="nama_barang" style="width:73%;">Nama Barang</label>
-                        <input type="text" name="nama_barang" style="width:90%;margin-right: 67px;" class="form-control" value="<?= $d->nama_barang ?>">
-                      </div>
-                    <?php } ?>
-                    <!-- /.box-body -->
+                      <div class="form-group">
+                        <?php foreach ($list_barang as $barang) { ?>
+                          <div class="box-body">
+                            <div class="form-group" style="display:inline-block;">
+                              <input type="hidden" name="id_barang" value="<?= $barang->id_barang ?>">
+                              <label for="kd_barang" style="width:73%;">Kode Barang</label>
+                              <input type="text" name="kd_barang" style="width:90%;margin-right: 67px;" class="form-control" value="<?= $barang->kd_barang ?>">
+                            </div>
+                            <div class="form-group" style="display:inline-block;">
+                              <label for="nama_barang" style="width:73%;">Nama Barang</label>
+                              <input type="text" name="nama_barang" style="width:90%;margin-right: 67px;" class="form-control" value="<?= $barang->nama_barang ?>">
+                            </div>
+                          <?php } ?>
+                          <!-- /.box-body -->
 
-                    <div class="box-footer" style="width:93%;">
-                      <a type="button" class="btn btn-default" style="width:10%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
-                      <button type="submit" style="width:20%;margin-left:689px;" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>&nbsp;&nbsp;&nbsp;
-                    </div>
+                          <div class="box-footer" style="width:93%;">
+                            <a type="button" class="btn btn-default" style="width:10%" onclick="history.back(-1)" name="btn_kembali"><i class="fa fa-arrow-left" aria-hidden="true"></i> Kembali</a>
+                            <button type="submit" style="width:20%;margin-left:689px;" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>&nbsp;&nbsp;&nbsp;
+                          </div>
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
-
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box -->
-
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; <?= date('Y') ?></strong>
-
-  </footer>
+      <div class="pull-right hidden-xs">
+        <b></b>
+      </div>
+      <strong>Copyright &copy; <?= date('Y') ?></strong>
+    </footer>
   </div>
   <!-- ./wrapper -->
 

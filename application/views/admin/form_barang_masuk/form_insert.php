@@ -227,19 +227,19 @@
                       </div>
                       <div class="form-group" style="margin-bottom:40px;">
                         <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>
-                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;"">
+                        <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;">
                           <option selected>-- Pilih --</option>
-                          <?php foreach ($supplier as $s) { ?>
-                            <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
-                        <?php } ?>
+                          <?php foreach ($list_supplier as $supplier) { ?>
+                            <option value=" <?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
+                          <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_barang" style="width:73%;margin-left: 12px;">Barang</label>
                         <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($barang as $b) { ?>
-                            <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                          <?php foreach ($list_barang as $barang) { ?>
+                            <option value="<?= $barang['id_barang'] ?>"><?= $barang['nama_barang'] ?></option>
                           <?php } ?>
                         </select>
                       </div>
@@ -247,8 +247,8 @@
                         <label for="id_kategori" style="width:73%;margin-left:34px;">Kategori</label>
                         <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($kategori as $k) { ?>
-                            <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
+                          <?php foreach ($list_kategori as $kategori) { ?>
+                            <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama_kategori'] ?></option>
                           <?php } ?>
                         </select>
                       </div>
@@ -256,8 +256,8 @@
                         <label for="id_satuan" style="width:73%;margin-left:64px;">Satuan</label>
                         <select class="form-control" name="id_satuan" style="width:90%;margin-left:64px;margin-right: 18px;">
                           <option value="" selected="">-- Pilih --</option>
-                          <?php foreach ($satuan as $s) { ?>
-                            <option value="<?= $s['id_satuan'] ?>"><?= $s['nama_satuan'] ?></option>
+                          <?php foreach ($list_satuan as $satuan) { ?>
+                            <option value="<?= $satuan['id_satuan'] ?>"><?= $satuan['nama_satuan'] ?></option>
                           <?php } ?>
                         </select>
                       </div>
@@ -277,33 +277,9 @@
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
-
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box -->
-
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
     <!-- /.row -->
     </section>
@@ -312,7 +288,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b></b>
     </div>
     <strong>Copyright &copy; <?= date('Y') ?></strong>
   </footer>

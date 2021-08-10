@@ -234,18 +234,17 @@
                     <tr>
                       <?php if (is_array($list_data)) { ?>
                         <?php $no = 1; ?>
-                        <?php foreach ($list_data as $dd) : ?>
+                        <?php foreach ($list_data as $data) : ?>
                           <td><?= $no ?></td>
-                          <td><?= $dd['id_barang_masuk'] ?></td>
-                          <td><?= $dd['tanggal_masuk'] ?></td>
-                          <td><?= $dd['tanggal_keluar'] ?></td>
-                          <td><?= $dd['nama_supplier'] ?></td>
-                          <td><?= $dd['nama_barang'] ?></td>
-                          <td><?= $dd['nama_kategori'] ?></td>
-                          <td><?= $dd['nama_satuan'] ?></td>
-                          <td><?= $dd['jumlah'] ?></td>
-                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $dd['id_barang_keluar']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
-                          <!-- <td><a type="button" class="btn btn-danger btn-report" href="<?= base_url('report/barangKeluar/' . $dd['id_barang_masuk'] . '/' . $dd->tanggal_keluar) ?>" name="btn_report" style="margin:auto;"><i class="fa fa-file-text" aria-hidden="true"></i></a></td> -->
+                          <td><?= $data['id_barang_masuk'] ?></td>
+                          <td><?= $data['tanggal_masuk'] ?></td>
+                          <td><?= $data['tanggal_keluar'] ?></td>
+                          <td><?= $data['nama_supplier'] ?></td>
+                          <td><?= $data['nama_barang'] ?></td>
+                          <td><?= $data['nama_kategori'] ?></td>
+                          <td><?= $data['nama_satuan'] ?></td>
+                          <td><?= $data['jumlah'] ?></td>
+                          <td><a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_keluar/' . $data['id_barang_keluar']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
@@ -257,21 +256,16 @@
               </div>
               <!-- /.box-body -->
             </div>
-
-
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
+        <b></b>
       </div>
       <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
   </div>
   <!-- ./wrapper -->

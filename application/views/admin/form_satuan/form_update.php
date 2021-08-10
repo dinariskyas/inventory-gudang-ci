@@ -212,12 +212,12 @@
 
                     <div class="box-body">
                       <div class="form-group">
-                        <?php foreach ($data_satuan as $d) { ?>
+                        <?php foreach ($list_satuan as $satuan) { ?>
                           <div class="box-body">
                             <div class="form-group" style="display:inline-block;">
-                              <input type="hidden" name="id_satuan" value="<?= $d->id_satuan ?>">
+                              <input type="hidden" name="id_satuan" value="<?= $satuan->id_satuan ?>">
                               <label for="nama_satuan" style="width:73%;">Nama Satuan</label>
-                              <input type="text" required name="nama_satuan" style="width:90%;margin-right: 67px;" class="form-control" id="nama_satuan" placeholder="Nama Satuan" value="<?= $d->nama_satuan ?>">
+                              <input type="text" required name="nama_satuan" style="width:90%;margin-right: 67px;" class="form-control" id="nama_satuan" placeholder="Nama Satuan" value="<?= $satuan->nama_satuan ?>">
                             </div>
                             <div class="form-group" style="display:inline-block;">
                               <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:20px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
@@ -233,45 +233,19 @@
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
-
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box -->
-
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b></b>
     </div>
     <strong>Copyright &copy; <?= date('Y') ?></strong>
-
   </footer>
   </div>
   <!-- ./wrapper -->

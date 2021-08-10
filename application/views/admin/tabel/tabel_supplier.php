@@ -228,14 +228,14 @@
                     <tr>
                       <?php if (is_array($list_data)) { ?>
                         <?php $no = 1; ?>
-                        <?php foreach ($list_data as $dd) : ?>
+                        <?php foreach ($list_data as $data) : ?>
                           <td><?= $no ?></td>
-                          <td><?= $dd->nama_supplier ?></td>
-                          <td><?= $dd->no_telp ?></td>
-                          <td><?= $dd->alamat ?></td>
+                          <td><?= $data->nama_supplier ?></td>
+                          <td><?= $data->no_telp ?></td>
+                          <td><?= $data->alamat ?></td>
                           <th>
-                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_supplier/' . $dd->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a></td>
-                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_supplier/' . $dd->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
+                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_supplier/' . $data->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a></td>
+                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_supplier/' . $data->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
@@ -243,32 +243,19 @@
                   <td colspan="7" align="center"><strong>Data Kosong</strong></td>
                 <?php } ?>
                   </tbody>
-                  <!-- <tfoot>
-                <tr>
-                  <th>No</th>
-                  <th>Kode Satuan</th>
-                  <th>Nama Satuan</th>
-                </tr>
-                </tfoot> -->
                 </table>
               </div>
-              <!-- /.box-body -->
             </div>
-
-
-            <!-- /.col -->
           </div>
-          <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
+        <b></b>
       </div>
       <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
   </div>
   <!-- ./wrapper -->

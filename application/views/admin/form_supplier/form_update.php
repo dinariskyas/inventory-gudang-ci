@@ -155,10 +155,10 @@
                         </ul>
                     </li>
                     <li class="header">REPORT</li>
-          <li>
-            <a href="<?php echo base_url('admin/cetakLaporan') ?>">
-              <i class="fa fa-print" aria-hidden="true"></i> <span>Cetak Laporan</span></a>
-          </li>
+                    <li>
+                        <a href="<?php echo base_url('admin/cetakLaporan') ?>">
+                            <i class="fa fa-print" aria-hidden="true"></i> <span>Cetak Laporan</span></a>
+                    </li>
                     <li class="header">LABELS</li>
                     <li>
                         <a href="<?php echo base_url('admin/profile') ?>">
@@ -212,20 +212,20 @@
 
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <?php foreach ($data_supplier as $d) { ?>
+                                                <?php foreach ($list_supplier as $supplier) { ?>
                                                     <div class="box-body">
                                                         <div class="form-group" style="display:inline-block;">
-                                                            <input type="hidden" name="id_supplier" value="<?= $d->id_supplier ?>">
+                                                            <input type="hidden" name="id_supplier" value="<?= $supplier->id_supplier ?>">
                                                             <label for="nama_supplier" style="width:73%;">Nama Supplier</label>
-                                                            <input type="text" required name="nama_supplier" style="width:90%;margin-right: 67px;" class="form-control" id="nama_supplier" placeholder="Nama Supplier" value="<?= $d->nama_supplier ?>">
+                                                            <input type="text" required name="nama_supplier" style="width:90%;margin-right: 67px;" class="form-control" id="nama_supplier" placeholder="Nama Supplier" value="<?= $supplier->nama_supplier ?>">
                                                         </div>
                                                         <div class="form-group" style="display:inline-block;">
                                                             <label for="no_telp" style="width:73%;">No Telp</label>
-                                                            <input type="number" name="no_telp" style="width:90%;margin-right: 67px;" class="form-control" id="no_telp" placeholder="No Telp" value="<?= $d->no_telp ?>">
+                                                            <input type="number" name="no_telp" style="width:90%;margin-right: 67px;" class="form-control" id="no_telp" placeholder="No Telp" value="<?= $supplier->no_telp ?>">
                                                         </div>
                                                         <div class="form-group" style="display:inline-block;">
                                                             <label for="alamat" style="width:73%;">Alamat</label>
-                                                            <input type="text" name="alamat" style="width:90%;margin-right: 67px;" class="form-control" id="alamat" placeholder="No Telp" value="<?= $d->alamat ?>">
+                                                            <input type="text" name="alamat" style="width:90%;margin-right: 67px;" class="form-control" id="alamat" placeholder="No Telp" value="<?= $supplier->alamat ?>">
                                                         </div>
                                                         <div class="form-group" style="display:inline-block;">
                                                             <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:20px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
@@ -241,45 +241,20 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- /.box -->
-
-                            <!-- Form Element sizes -->
-
-                            <!-- /.box -->
-
-
-                            <!-- /.box -->
-
-                            <!-- Input addon -->
-
-                            <!-- /.box -->
 
                         </div>
-                        <!--/.col (left) -->
-                        <!-- right column -->
-                        <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-                        <!-- /.box -->
-                        <!-- general form elements disabled -->
-
-                        <!-- /.box -->
-
                     </div>
                 </div>
-                <!--/.col (right) -->
         </div>
-        <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b></b>
         </div>
         <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
     </div>
     <!-- ./wrapper -->

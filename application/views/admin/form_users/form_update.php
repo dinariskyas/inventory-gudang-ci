@@ -216,20 +216,20 @@
                     <?php } ?>
 
                     <div class="box-body">
-                      <?php foreach ($list_data as $d) { ?>
-                        <input type="hidden" name="id_user" value="<?= $d->id_user ?>">
+                      <?php foreach ($list_data as $user) { ?>
+                        <input type="hidden" name="id_user" value="<?= $user->id_user ?>">
                         <div class="form-group" style="display:block;">
                           <label for="username" style="width:87%;margin-left: 0px;">Username</label>
-                          <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" required="" class="form-control" id="username" value="<?= $d->username ?>">
+                          <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" required="" class="form-control" id="username" value="<?= $user->username ?>">
                         </div>
                         <div class="form-group" style="display:block;">
                           <label for="email" style="width:73%;">Email</label>
-                          <input type="email" name="email" style="width:30%;margin-right: 67px;" class="form-control" id="email" required="" value="<?= $d->email ?>">
+                          <input type="email" name="email" style="width:30%;margin-right: 67px;" class="form-control" id="email" required="" value="<?= $user->email ?>">
                         </div>
                         <div class="form-group" style="display:block;">
                           <label for="role" style="width:73%;">Role</label>
                           <select class="form-control" name="role" style="width:11%;margin-right: 18px;">
-                            <?php if ($d->role == 1) { ?>
+                            <?php if ($user->role == 1) { ?>
                               <option value="1" selected="">User Admin</option>
                               <option value="0">User Biasa</option>
                             <?php } else { ?>
@@ -254,45 +254,19 @@
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
-
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box -->
-
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b></b>
     </div>
     <strong>Copyright &copy; <?= date('Y') ?></strong>
-
   </footer>
   </div>
   <!-- ./wrapper -->

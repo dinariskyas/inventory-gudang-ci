@@ -216,13 +216,13 @@
 
                     <div class="box-body">
                       <div class="form-group">
-                        <?php foreach ($list_data as $d) { ?>
+                        <?php foreach ($list_data as $data) { ?>
                           <label for="id_barang_masuk" style="margin-left:220px;display:inline;">ID Transaksi</label>
-                          <input type="text" name="id_barang_masuk" style="margin-left:37px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $d->id_barang_masuk ?>">
+                          <input type="text" name="id_barang_masuk" style="margin-left:37px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $data->id_barang_masuk ?>">
                       </div>
                       <div class="form-group">
                         <label for="tanggal" style="margin-left:220px;display:inline;">Tanggal Masuk</label>
-                        <input type="text" name="tanggal" style="margin-left:20px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $d->tanggal ?>">
+                        <input type="text" name="tanggal" style="margin-left:20px;width:20%;display:inline;" class="form-control" readonly="readonly" value="<?= $data->tanggal ?>">
                       </div>
                       <div class="form-group">
                         <label for="tanggal_keluar" style="margin-left:220px;display:inline;">Tanggal Keluar</label>
@@ -231,11 +231,11 @@
                       <div class="form-group" style="margin-bottom:40px;">
                         <label for="id_supplier" style="margin-left:220px;display:inline;">Supplier</label>
                         <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;" readonly="readonly">
-                          <?php foreach ($supplier as $s) { ?>
-                            <?php if ($s['id_supplier'] == $list_data['id_supplier']) { ?>
-                              <option value=" <?= $list_data['id_supplier'] ?>" selected=""><?= $s['nama_supplier'] ?></option>
+                          <?php foreach ($list_supplier as $supplier) { ?>
+                            <?php if ($supplier['id_supplier'] == $list_data['id_supplier']) { ?>
+                              <option value=" <?= $list_data['id_supplier'] ?>" selected=""><?= $supplier['nama_supplier'] ?></option>
                             <?php } else { ?>
-                              <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
+                              <option value=" <?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
@@ -243,11 +243,11 @@
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_barang" style="width:73%;margin-left: 12px;">Barang</label>
                         <select class="form-control" name="id_barang" style="width:110%;margin-right: 18px; margin-left: 12px;" readonly="readonly">
-                          <?php foreach ($barang as $b) { ?>
-                            <?php if ($b['id_barang'] == $list_data['id_barang']) { ?>
-                              <option value=" <?= $list_data['id_barang'] ?>" selected=""><?= $b['nama_barang'] ?></option>
+                          <?php foreach ($list_barang as $barang) { ?>
+                            <?php if ($barang['id_barang'] == $list_data['id_barang']) { ?>
+                              <option value=" <?= $list_data['id_barang'] ?>" selected=""><?= $barang['nama_barang'] ?></option>
                             <?php } else { ?>
-                              <option value=" <?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                              <option value=" <?= $barang['id_barang'] ?>"><?= $barang['nama_barang'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
@@ -255,11 +255,11 @@
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_kategori" style="width:73%;margin-left:34px;">Kategori</label>
                         <select class="form-control" name="id_kategori" style="width:110%;margin-left:34px;margin-right: 18px;" readonly="readonly">
-                          <?php foreach ($kategori as $k) { ?>
-                            <?php if ($k['id_kategori'] == $list_data['id_kategori']) { ?>
-                              <option value="<?= $list_data['id_kategori'] ?>" selected=""><?= $k['nama_kategori'] ?></option>
+                          <?php foreach ($list_kategori as $kategori) { ?>
+                            <?php if ($kategori['id_kategori'] == $list_data['id_kategori']) { ?>
+                              <option value="<?= $list_data['id_kategori'] ?>" selected=""><?= $kategori['nama_kategori'] ?></option>
                             <?php } else { ?>
-                              <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
+                              <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['nama_kategori'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
@@ -267,18 +267,18 @@
                       <div class="form-group" style="display:inline-block;">
                         <label for="id_satuan" style="width:73%;margin-left:64px;">Satuan</label>
                         <select class="form-control" name="id_satuan" style="width:110%;margin-left:64px;margin-right: 18px;" readonly="readonly">
-                          <?php foreach ($satuan as $sa) { ?>
-                            <?php if ($sa['id_satuan'] == $list_data['id_satuan']) { ?>
-                              <option value="<?= $list_data['id_satuan'] ?>" selected=""><?= $sa['nama_satuan'] ?></option>
+                          <?php foreach ($list_satuan as $satuan) { ?>
+                            <?php if ($satuan['id_satuan'] == $list_data['id_satuan']) { ?>
+                              <option value="<?= $list_data['id_satuan'] ?>" selected=""><?= $satuan['nama_satuan'] ?></option>
                             <?php } else { ?>
-                              <option value="<?= $sa['id_satuan'] ?>"><?= $sa['nama_satuan'] ?></option>
+                              <option value="<?= $satuan['id_satuan'] ?>"><?= $satuan['nama_satuan'] ?></option>
                             <?php } ?>
                           <?php } ?>
                         </select>
                       </div>
                       <div class="form-group" style="display:inline-block;">
                         <label for="jumlah" style="width:73%;margin-left:94px;">Jumlah</label>
-                        <input type="number" name="jumlah" style="width:41%;margin-left:94px;margin-right:18px;" class="form-control" id="jumlah" max="<?= $d->jumlah ?>" value="<?= $d->jumlah ?>">
+                        <input type="number" name="jumlah" style="width:41%;margin-left:94px;margin-right:18px;" class="form-control" id="jumlah" max="<?= $data->jumlah ?>" value="<?= $data->jumlah ?>">
                       </div>
                     <?php } ?>
                     <!-- /.box-body -->
@@ -290,45 +290,19 @@
                   </form>
                 </div>
               </div>
-              <!-- /.box -->
-
-              <!-- Form Element sizes -->
-
-              <!-- /.box -->
-
-
-              <!-- /.box -->
-
-              <!-- Input addon -->
-
-              <!-- /.box -->
-
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-            <!-- /.box -->
-            <!-- general form elements disabled -->
-
-            <!-- /.box -->
-
           </div>
         </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b></b>
     </div>
     <strong>Copyright &copy; <?= date('Y') ?></strong>
-
   </footer>
   </div>
   <!-- ./wrapper -->

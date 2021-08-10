@@ -156,10 +156,10 @@
                     </li>
                 </ul>
                 <li class="header">REPORT</li>
-          <li>
-            <a href="<?php echo base_url('admin/cetakLaporan') ?>">
-              <i class="fa fa-print" aria-hidden="true"></i> <span>Cetak Laporan</span></a>
-          </li>
+                <li>
+                    <a href="<?php echo base_url('admin/cetakLaporan') ?>">
+                        <i class="fa fa-print" aria-hidden="true"></i> <span>Cetak Laporan</span></a>
+                </li>
                 <li class="header">LABELS</li>
                 <li>
                     <a href="<?php echo base_url('admin/profile') ?>">
@@ -213,12 +213,12 @@
 
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <?php foreach ($data_kategori as $d) { ?>
+                                                <?php foreach ($list_kategori as $kategori) { ?>
                                                     <div class="box-body">
                                                         <div class="form-group" style="display:inline-block;">
-                                                            <input type="hidden" name="id_kategori" value="<?= $d->id_kategori ?>">
+                                                            <input type="hidden" name="id_kategori" value="<?= $kategori->id_kategori ?>">
                                                             <label for="nama_kategori" style="width:73%;">Nama Kategori</label>
-                                                            <input type="text" required name="nama_kategori" style="width:90%;margin-right: 67px;" class="form-control" id="nama_kategori" placeholder="Nama Kategori" value="<?= $d->nama_kategori ?>">
+                                                            <input type="text" required name="nama_kategori" style="width:90%;margin-right: 67px;" class="form-control" id="nama_kategori" placeholder="Nama Kategori" value="<?= $kategori->nama_kategori ?>">
                                                         </div>
                                                         <div class="form-group" style="display:inline-block;">
                                                             <button type="reset" class="btn btn-basic" name="btn_reset" style="width:95px;margin-left:20px;"><i class="fa fa-eraser" aria-hidden="true"></i> Reset</button>
@@ -234,45 +234,20 @@
                                     </form>
                                 </div>
                             </div>
-                            <!-- /.box -->
-
-                            <!-- Form Element sizes -->
-
-                            <!-- /.box -->
-
-
-                            <!-- /.box -->
-
-                            <!-- Input addon -->
-
-                            <!-- /.box -->
 
                         </div>
-                        <!--/.col (left) -->
-                        <!-- right column -->
-                        <!-- <div class="col-md-6">
-          <!-- Horizontal Form -->
-
-                        <!-- /.box -->
-                        <!-- general form elements disabled -->
-
-                        <!-- /.box -->
-
                     </div>
                 </div>
-                <!--/.col (right) -->
         </div>
-        <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b></b>
         </div>
         <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
     </div>
     <!-- ./wrapper -->

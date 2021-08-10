@@ -222,7 +222,6 @@
 
 
                 <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
-                <a href="<?= base_url('admin/cetakLaporanBarangMasuk'); ?>" style="margin-bottom:10px;" type="button" class="btn btn-info"> <i class="fa fa-print" aria-hidden=" true"></i> Cetak Data</a>
                 <br><br>
                 <table cellspacing="5" cellpadding="5">
                   <tbody>
@@ -237,8 +236,8 @@
                           <label for="id_supplier" style="margin-left:0px;display:inline;">Supplier</label>
                           <select id="search_supplier" class="form-control" name="search_supplier" style="margin-left:10px;width:52%;display:inline;">
                             <option selected>-- Pilih --</option>
-                            <?php foreach ($supplier as $s) { ?>
-                              <option value=" <?= $s['id_supplier'] ?>"><?= $s['nama_supplier'] ?></option>
+                            <?php foreach ($list_supplier as $supplier) { ?>
+                              <option value=" <?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
                             <?php } ?>
                           </select>
                         </div>
@@ -266,19 +265,19 @@
                     <tr>
                       <?php if (is_array($list_data)) { ?>
                         <?php $no = 1; ?>
-                        <?php foreach ($list_data as $dd) : ?>
+                        <?php foreach ($list_data as $data) : ?>
                           <td><?= $no ?></td>
-                          <td><?= $dd['id_barang_masuk'] ?></td>
-                          <td><?= $dd['tanggal'] ?></td>
-                          <td><?= $dd['nama_supplier'] ?></td>
-                          <td><?= $dd['nama_barang'] ?></td>
-                          <td><?= $dd['nama_kategori'] ?></td>
-                          <td><?= $dd['nama_satuan'] ?></td>
-                          <td><?= $dd['jumlah'] ?></td>
+                          <td><?= $data['id_barang_masuk'] ?></td>
+                          <td><?= $data['tanggal'] ?></td>
+                          <td><?= $data['nama_supplier'] ?></td>
+                          <td><?= $data['nama_barang'] ?></td>
+                          <td><?= $data['nama_kategori'] ?></td>
+                          <td><?= $data['nama_satuan'] ?></td>
+                          <td><?= $data['jumlah'] ?></td>
                           <th>
-                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang_masuk/' . $dd['id_barang_masuk']) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
-                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $dd['id_barang_masuk']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-timees-circle" aria-hidden="true"> Delete</i> </a>
-                            <a type="button" class="btn btn-warning btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $dd['id_barang_masuk']) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"> Keluarkan</i></a>
+                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang_masuk/' . $data['id_barang_masuk']) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
+                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $data['id_barang_masuk']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-timees-circle" aria-hidden="true"> Delete</i> </a>
+                            <a type="button" class="btn btn-warning btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $data['id_barang_masuk']) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"> Keluarkan</i></a>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
@@ -288,28 +287,19 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.box-body -->
             </div>
-
-
-
-            <!-- /.box -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
+        <b></b>
       </div>
       <strong>Copyright &copy; <?= date('Y') ?></strong>
-
     </footer>
-
     <!-- Control Sidebar -->
   </div>
   <!-- ./wrapper -->
