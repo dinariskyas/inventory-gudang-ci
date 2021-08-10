@@ -183,8 +183,8 @@ class Admin extends CI_Controller
 
   public function proses_tambah_user()
   {
-    $this->form_validation->set_rules('username', 'Username', 'required');
-    $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+    $this->form_validation->set_rules('username', 'Username', 'required|callback_validation_username');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_validation_email');
     $this->form_validation->set_rules('password', 'Password', 'required');
     $this->form_validation->set_rules('confirm_password', 'Confirm password', 'required|matches[password]');
 
@@ -222,6 +222,27 @@ class Admin extends CI_Controller
     } else {
       $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
       $this->load->view('admin/form_users/form_insert', $data);
+    }
+  }
+
+  public function validation_username($str)
+  {
+    if (empty($this->M_admin->getUserByUsername($str))) {
+      return TRUE;
+    } else {
+      $this->form_validation->set_message('validation_username', 'The {field} "' . "$str" . '" is already submitted');
+      return FALSE;
+    }
+  }
+
+  //callback function to check submitted email, and return validation message when its already submitted
+  public function validation_email($str)
+  {
+    if (empty($this->M_admin->getUserByEmail($str))) {
+      return TRUE;
+    } else {
+      $this->form_validation->set_message('validation_email', 'The {field} "' . "$str" . '" is already submitted');
+      return FALSE;
     }
   }
 

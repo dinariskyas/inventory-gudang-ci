@@ -218,11 +218,11 @@
                     <div class="box-body">
                       <div class="form-group" style="display:block;">
                         <label for="username" style="width:87%;margin-left: 0px;">Username</label>
-                        <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" class="form-control" id="username" placeholder="Username">
+                        <input type="text" name="username" style="width: 30%;margin-right: 67px;margin-left: 0px;" class="form-control" id="username" placeholder="Username" value="<?php echo set_value('username'); ?>">
                       </div>
                       <div class="form-group" style="display:block;">
                         <label for="email" style="width:73%;">Email</label>
-                        <input type="text" name="email" style="width:30%;margin-right: 67px;" class="form-control" id="email" placeholder="Email">
+                        <input type="text" name="email" style="width:30%;margin-right: 67px;" class="form-control" id="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
                       </div>
                       <div class="form-group" style="display:block;">
                         <label for="password" style="width:73%;">Password</label>
@@ -263,7 +263,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b></b>
     </div>
     <strong>Copyright &copy; <?= date('Y') ?></strong>
 

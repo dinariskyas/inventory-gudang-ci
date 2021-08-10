@@ -167,6 +167,22 @@ class M_admin extends CI_Model
     return $this->db->get()->row();
   }
 
+  public function getUserByUsername($username)
+  {
+    $this->db->select('*');
+    $this->db->from('tb_user');
+    $this->db->where('username', $username);
+    return  $this->db->get()->result();
+  }
+
+  public function getUserByEmail($email)
+  {
+    $this->db->select('*');
+    $this->db->from('tb_user');
+    $this->db->where('email', $email);
+    return  $this->db->get()->result();
+  }
+
   //
   public function getBarangMasuk($limit = null, $id_barang = null, $range = null)
   {

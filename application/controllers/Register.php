@@ -24,7 +24,7 @@ class Register extends CI_Controller
   {
 
     $this->form_validation->set_rules('username', 'Username', 'required');
-    $this->form_validation->set_rules('email', 'Email', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|valid_email|callback_validation_email');
     $this->form_validation->set_rules('password', 'Password', 'required');
     $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[password]');
 
@@ -44,7 +44,7 @@ class Register extends CI_Controller
         );
 
         $this->M_login->insert('tb_user', $data);
-        
+
         $data_user = $this->M_login->cek_id_user();
         $id_user = $data_user->id_user;
 
@@ -61,6 +61,17 @@ class Register extends CI_Controller
       }
     } else {
       $this->load->view('login/register');
+    }
+  }
+
+  //callback function to check submitted email, and return validation message when its already submitted
+  public function validation_email($str)
+  {
+    if (empty($this->M_login->getUserByEmail($str))) {
+      return TRUE;
+    } else {
+      $this->form_validation->set_message('validation_email', 'email "' . "$str" . '" sudah dikirimkan');
+      return FALSE;
     }
   }
 }

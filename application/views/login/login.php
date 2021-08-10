@@ -17,7 +17,7 @@
     body {
       font-family: "Open Sans", sans-serif;
       height: 100vh;
-      background: url("https://i.imgur.com/HgflTDf.jpg") 50% fixed;
+      background: url("https://www.harianbisnis.co.id/oolsoagy/2020/08/62-perusahaan-wallpaper-paling-keren.jpg") 50% fixed;
       background-size: cover;
     }
 
