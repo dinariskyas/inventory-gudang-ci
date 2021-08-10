@@ -640,6 +640,13 @@ class Admin extends CI_Controller
 
   public function tabel_barang_masuk()
   {
+    $barang = $this->M_admin->get_list_barang();
+
+    $opt = array('' => 'All Barang');
+    foreach ($barang as $barang) {
+      $opt[$barang] = $barang;
+    }
+
     $data = array(
       'list_data' => $this->M_admin->getAllBarangMasuk(),
       'supplier'  => $this->M_admin->getAllSupplier(),
@@ -648,20 +655,38 @@ class Admin extends CI_Controller
       'satuan'  => $this->M_admin->getAllSatuan(),
       'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'))
     );
-
+    $data['form_barang'] = form_dropdown('', $opt, '', 'id="barang" class="form-control"');
     $this->load->view('admin/tabel/tabel_barang_masuk', $data);
   }
 
-  // public function cetakLaporanBarangMasuk()
-  // {
-  //   $data['title'] = 'Laporan Barang Masuk';
-  //   $data['data'] = $this->Cetak_model->viewBarangMasuk();
-  //   $this->load->library('pdf');
+  public function ajax_list()
+  {
+    $list = $this->tb_barang_masuk->get_datatables();
+    $data = array();
+    $no = $_POST['start'];
+    foreach ($list as $barang_masuk) {
+      $no++;
+      $row = array();
+      $row[] = $no;
+      $row[] = $barang_masuk->id_supplier;
+      $row[] = $barang_masuk->id_barang;
+      $row[] = $barang_masuk->id_kategori;
+      $row[] = $barang_masuk->id_satuan;
+      $row[] = $barang_masuk->tanggal;
+      $row[] = $barang_masuk->jumlah;
 
-  //   $this->pdf->setPaper('A4', 'potrait');
-  //   $this->pdf->filename = "laporan_dosen.pdf";
-  //   $this->pdf->load_view('admin/tabel/laporan_barang_masuk', $data);
-  // }
+      $data[] = $row;
+    }
+
+    $output = array(
+      "draw" => $_POST['draw'],
+      "recordsTotal" => $this->tb_barang_masuk->count_all(),
+      "recordsFiltered" => $this->tb_barang_masuk->count_filtered(),
+      "data" => $data,
+    );
+    //output to json format
+    echo json_encode($output);
+  }
 
   public function cetakLaporan()
   {

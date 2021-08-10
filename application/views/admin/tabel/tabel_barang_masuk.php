@@ -223,31 +223,42 @@
 
                 <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
                 <br><br>
-                <table cellspacing="5" cellpadding="5">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-group" style="display:inline-block;">
-                          <label for="tanggal" style="margin-left:0px;display:inline;">Tanggal</label>
-                          <input value="<?= set_value('tanggal', date('d/m/Y')); ?>" type="date" id="search_date" name="search_date" style="margin-left:10px;width:66%;display:inline;" class="form-control date" placeholder="Klik Disini">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Custom Filter : </h3>
+                  </div>
+                  <div class="panel-body">
+                    <form id="form-filter" class="form-horizontal">
+                      <div class="form-group">
+                        <label for="barang" class="col-sm-2 control-label">Barang</label>
+                        <div class="col-sm-4">
+                          <?php echo $form_barang; ?>
                         </div>
-                        <div class="form-group" style="display:inline-block;">
-                          <!-- <input type="text" name="search_supplier" style="width:90%;margin-right: 67px;" class="form-control" id="search_supplier" placeholder="Search Supplier"> -->
-                          <label for="id_supplier" style="margin-left:0px;display:inline;">Supplier</label>
-                          <select id="search_supplier" class="form-control" name="search_supplier" style="margin-left:10px;width:52%;display:inline;">
-                            <option selected>-- Pilih --</option>
-                            <?php foreach ($list_supplier as $supplier) { ?>
-                              <option value=" <?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
-                            <?php } ?>
-                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="tanggal" class="col-sm-2 control-label">Tanggal Masuk</label>
+                        <div class="col-sm-4">
+                          <input type="date" class="form-control" id="tanggal">
                         </div>
-                        <a style="display:inline-block;margin-left:10px;" type="button" class="btn btn-warning" id="search" name="search"><i class="fa fa-search" aria-hidden="true"></i> Cari</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      </div>
+                      <div class="form-group">
+                        <label for="supplier" class="col-sm-2 control-label">Supplier</label>
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" id="supplier">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="supplier" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-4">
+                          <button type="button" id="btn-filter" class="btn btn-primary">Filter</button>
+                          <button type="button" id="btn-reset" class="btn btn-default">Reset</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
                 <br>
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="table" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -320,66 +331,79 @@
   <script src="<?php echo base_url() ?>assets/web_admin/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="<?php echo base_url() ?>assets/web_admin/dist/js/demo.js"></script>
+
   <!-- page script -->
-  <script>
-    jQuery(document).ready(function($) {
-      $('.btn-delete').on('click', function() {
-        var getLink = $(this).attr('href');
-        swal({
-          title: 'Delete Data',
-          text: 'Yakin Ingin Menghapus Data ?',
-          html: true,
-          confirmButtonColor: '#d9534f',
-          showCancelButton: true,
-        }, function() {
-          window.location.href = getLink
-        });
-        return false;
+  <script type="text/javascript">
+    var table;
+
+    $(document).ready(function() {
+
+      //datatables
+      table = $('#table').DataTable({
+
+        "processing": true, //Feature control the processing indicator.
+        "serverSide": true, //Feature control DataTables' server-side processing mode.
+        "order": [], //Initial no order.
+
+        // Load data for the table's content from an Ajax source
+        "ajax": {
+          "url": "<?php echo site_url('tb_barang_masuk/ajax_list') ?>",
+          "type": "POST",
+          "data": function(data) {
+            data.barang = $('#barang').val();
+            data.tanggal = $('#tanggal').val();
+            data.supplier = $('#supplier').val();
+          }
+        },
+
+        //Set column definition initialisation properties.
+        "columnDefs": [{
+          "targets": [0], //first column / numbering column
+          "orderable": false, //set not orderable
+        }, ],
+
       });
+
+      $('#btn-filter').click(function() { //button filter event click
+        table.ajax.reload(); //just reload table
+      });
+      $('#btn-reset').click(function() { //button reset event click
+        $('#form-filter')[0].reset();
+        table.ajax.reload(); //just reload table
+      });
+
     });
 
-    $(function() {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-        'paging': true,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': true,
-        'info': true,
-        'autoWidth': false
-      })
-    });
+    // // var end = $('#search_date').val();
+    // // $('#search_date').datetimepicker();
+    // var date = ""
+    // // This will update the "end" variable as it changes.
+    // $(document).on('change', '#search_date', function() {
+    // date = $(this).val();
+    // // filterDate(date)
+    // console.log(date);
+    // });
 
-    // var end = $('#search_date').val();
-    // $('#search_date').datetimepicker();
-    var date = ""
-    // This will update the "end" variable as it changes.
-    $(document).on('change', '#search_date', function() {
-      date = $(this).val();
-      // filterDate(date)
-      console.log(date);
-    });
+    // document.getElementById("search").onclick = function() {
+    // var supplier = $('#search_supplier').find('option').filter(':selected').text();
+    // if (supplier != "-- Pilih --") {
+    // filterSupplier($('#search_supplier').find('option').filter(':selected').text())
+    // }
+    // filterDate(date)
+    // return false;
+    // };
 
-    document.getElementById("search").onclick = function() {
-      var supplier = $('#search_supplier').find('option').filter(':selected').text();
-      if (supplier != "-- Pilih --") {
-        filterSupplier($('#search_supplier').find('option').filter(':selected').text())
-      }
-      filterDate(date)
-      return false;
-    };
+    // function filterDate(i) {
+    // $('#example1').DataTable().column(2).search(
+    // i
+    // ).draw();
+    // }
 
-    function filterDate(i) {
-      $('#example1').DataTable().column(2).search(
-        i
-      ).draw();
-    }
-
-    function filterSupplier(i) {
-      $('#example1').DataTable().column(3).search(
-        i
-      ).draw();
-    }
+    // function filterSupplier(i) {
+    // $('#example1').DataTable().column(3).search(
+    // i
+    // ).draw();
+    // }
   </script>
 </body>
 

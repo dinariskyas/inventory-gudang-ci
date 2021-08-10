@@ -3,6 +3,100 @@
 class M_admin extends CI_Model
 {
 
+  var $table = 'tb_barang_masuk';
+  var $column_order = array(null, 'id_supplier', 'id_barang', 'id_kategori', 'id_satuan', 'tanggal', 'jumlah'); //set column field database for datatable orderable
+  var $column_search = array('id_supplier', 'id_barang', 'id_kategori', 'id_satuan', 'tanggal', 'jumlah'); //set column field database for datatable searchable 
+  var $order = array('id' => 'asc'); // default order 
+
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->database();
+  }
+
+  private function _get_datatables_query()
+  {
+
+    //add custom filter here
+    if ($this->input->post('id_barang')) {
+      $this->db->where('id_barang', $this->input->post('id_barang'));
+    }
+    if ($this->input->post('tanggal')) {
+      $this->db->like('tanggal', $this->input->post('tanggal'));
+    }
+    if ($this->input->post('id_supplier')) {
+      $this->db->like('id_supplier', $this->input->post('id_supplier'));
+    }
+
+    $this->db->from($this->table);
+    $i = 0;
+
+    foreach ($this->column_search as $item) // loop column 
+    {
+      if ($_POST['search']['value']) // if datatable send POST for search
+      {
+
+        if ($i === 0) // first loop
+        {
+          $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+          $this->db->like($item, $_POST['search']['value']);
+        } else {
+          $this->db->or_like($item, $_POST['search']['value']);
+        }
+
+        if (count($this->column_search) - 1 == $i) //last loop
+          $this->db->group_end(); //close bracket
+      }
+      $i++;
+    }
+
+    if (isset($_POST['order'])) // here order processing
+    {
+      $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+    } else if (isset($this->order)) {
+      $order = $this->order;
+      $this->db->order_by(key($order), $order[key($order)]);
+    }
+  }
+
+  public function get_datatables()
+  {
+    $this->_get_datatables_query();
+    if ($_POST['length'] != -1)
+      $this->db->limit($_POST['length'], $_POST['start']);
+    $query = $this->db->get();
+    return $query->result();
+  }
+
+  public function count_filtered()
+  {
+    $this->_get_datatables_query();
+    $query = $this->db->get();
+    return $query->num_rows();
+  }
+
+  public function count_all()
+  {
+    $this->db->from($this->table);
+    return $this->db->count_all_results();
+  }
+
+  public function get_list_barang()
+  {
+    $this->db->select('id_barang');
+    $this->db->from($this->table);
+    $this->db->order_by('id_barang', 'asc');
+    $query = $this->db->get();
+    $result = $query->result();
+
+    $barang = array();
+    foreach ($result as $row) {
+      $barang[] = $row->id_barang;
+    }
+    return $barang;
+  }
+
+  //
   public function insert($tabel, $data)
   {
     $this->db->insert($tabel, $data);
@@ -12,23 +106,6 @@ class M_admin extends CI_Model
   {
     $query = $this->db->get($tabel);
     return $query->result();
-  }
-
-  public function cek_jumlah($tabel, $id_barang_masuk)
-  {
-    return  $this->db->select('*')
-      ->from($tabel)
-      ->where('id_barang_masuk', $id_barang_masuk)
-      ->get();
-  }
-
-  public function get_data_array($tabel, $id_barang_masuk)
-  {
-    $query = $this->db->select()
-      ->from($tabel)
-      ->where($id_barang_masuk)
-      ->get();
-    return $query->result_array();
   }
 
   public function get_data($tabel, $id_barang_masuk)
@@ -50,13 +127,6 @@ class M_admin extends CI_Model
   {
     $this->db->where($where);
     $this->db->delete($tabel);
-  }
-
-  public function mengurangi($tabel, $id_barang_masuk, $jumlah)
-  {
-    $this->db->set("jumlah", "jumlah - $jumlah");
-    $this->db->where('id_barang_masuk', $id_barang_masuk);
-    $this->db->update($tabel);
   }
 
   public function update_password($tabel, $where, $data)
@@ -100,9 +170,9 @@ class M_admin extends CI_Model
     return $query->result();
   }
 
+  // get All tabel
   public function getAllBarangMasuk()
   {
-    //atau bisa juga menggunakan code berikut
     $this->db->select('*');
     $this->db->from('tb_barang_masuk bm');
     $this->db->join('tb_supplier s', 's.id_supplier = bm.id_supplier');
@@ -143,10 +213,8 @@ class M_admin extends CI_Model
     return $query->result_array();
   }
 
-  // Barang Keluar
   public function getAllBarangKeluar()
   {
-    //atau bisa juga menggunakan code berikut
     $this->db->select('*');
     $this->db->from('tb_barang_keluar bk');
     $this->db->join('tb_supplier s', 's.id_supplier = bk.id_supplier');
@@ -238,4 +306,29 @@ class M_admin extends CI_Model
     $this->db->where($tgl . ' <=', $akhir);
     return $this->db->get($table)->result_array();
   }
+
+  // public function cek_jumlah($tabel, $id_barang_masuk)
+  // {
+  //   return  $this->db->select('*')
+  //     ->from($tabel)
+  //     ->where('id_barang_masuk', $id_barang_masuk)
+  //     ->get();
+  // }
+
+  // public function get_data_array($tabel, $id_barang_masuk)
+  // {
+  //   $query = $this->db->select()
+  //     ->from($tabel)
+  //     ->where($id_barang_masuk)
+  //     ->get();
+  //   return $query->result_array();
+  // }
+
+  // public function mengurangi($tabel, $id_barang_masuk, $jumlah)
+  // {
+  //   $this->db->set("jumlah", "jumlah - $jumlah");
+  //   $this->db->where('id_barang_masuk', $id_barang_masuk);
+  //   $this->db->update($tabel);
+  // }
+
 }
