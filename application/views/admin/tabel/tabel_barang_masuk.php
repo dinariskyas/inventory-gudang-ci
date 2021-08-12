@@ -22,6 +22,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/web_admin/datatables/css/jquery.dataTables.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -224,17 +225,8 @@
                 <a href="<?= base_url('admin/form_barang_masuk') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Masuk</a>
                 <br><br>
                 <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Custom Filter : </h3>
-                  </div>
                   <div class="panel-body">
                     <form id="form-filter" class="form-horizontal">
-                      <div class="form-group">
-                        <label for="barang" class="col-sm-2 control-label">Barang</label>
-                        <div class="col-sm-4">
-                          <?php echo $form_barang; ?>
-                        </div>
-                      </div>
                       <div class="form-group">
                         <label for="tanggal" class="col-sm-2 control-label">Tanggal Masuk</label>
                         <div class="col-sm-4">
@@ -272,30 +264,6 @@
                       <th>Aksi</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr>
-                      <?php if (is_array($list_data)) { ?>
-                        <?php $no = 1; ?>
-                        <?php foreach ($list_data as $data) : ?>
-                          <td><?= $no ?></td>
-                          <td><?= $data['id_barang_masuk'] ?></td>
-                          <td><?= $data['tanggal'] ?></td>
-                          <td><?= $data['nama_supplier'] ?></td>
-                          <td><?= $data['nama_barang'] ?></td>
-                          <td><?= $data['nama_kategori'] ?></td>
-                          <td><?= $data['nama_satuan'] ?></td>
-                          <td><?= $data['jumlah'] ?></td>
-                          <th>
-                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_barang_masuk/' . $data['id_barang_masuk']) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
-                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_barang_masuk/' . $data['id_barang_masuk']) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-timees-circle" aria-hidden="true"> Delete</i> </a>
-                            <a type="button" class="btn btn-warning btn-barangkeluar" href="<?= base_url('admin/barang_keluar/' . $data['id_barang_masuk']) ?>" name="btn_barangkeluar" style="margin:auto;"><i class="fa fa-sign-out" aria-hidden="true"> Keluarkan</i></a>
-                    </tr>
-                    <?php $no++; ?>
-                  <?php endforeach; ?>
-                <?php } else { ?>
-                  <td colspan="7" align="center"><strong>Data Kosong</strong></td>
-                <?php } ?>
-                  </tbody>
                 </table>
               </div>
             </div>
@@ -347,12 +315,11 @@
 
         // Load data for the table's content from an Ajax source
         "ajax": {
-          "url": "<?php echo site_url('tb_barang_masuk/ajax_list') ?>",
+          "url": "<?php echo site_url('admin/get_ajax') ?>",
           "type": "POST",
           "data": function(data) {
-            data.barang = $('#barang').val();
             data.tanggal = $('#tanggal').val();
-            data.supplier = $('#supplier').val();
+            data.nama_supplier = $('#supplier').val();
           }
         },
 
@@ -371,7 +338,6 @@
         $('#form-filter')[0].reset();
         table.ajax.reload(); //just reload table
       });
-
     });
 
     // // var end = $('#search_date').val();

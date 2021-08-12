@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Agu 2021 pada 19.22
+-- Waktu pembuatan: 10 Agu 2021 pada 05.27
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -39,7 +39,6 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_barang`, `kd_barang`, `nama_barang`) VALUES
-(2, 'WEEE', 'cba'),
 (3, '12', 'AA');
 
 -- --------------------------------------------------------
@@ -92,8 +91,8 @@ CREATE TABLE `tb_barang_masuk` (
 --
 
 INSERT INTO `tb_barang_masuk` (`id_barang_masuk`, `id_supplier`, `id_barang`, `id_kategori`, `id_satuan`, `tanggal`, `jumlah`) VALUES
-('WEST-202113870652', 6, 3, 6, 2, '0000-00-00', '4'),
-('WEST-202125467319', 6, 2, 6, 2, '2021-07-31', '5');
+('WEST-202167509241', 6, 3, 6, 2, '2021-08-10', '4'),
+('WEST-202184329716', 7, 3, 6, 2, '2021-08-01', '3');
 
 -- --------------------------------------------------------
 
@@ -111,7 +110,7 @@ CREATE TABLE `tb_kategori` (
 --
 
 INSERT INTO `tb_kategori` (`id_kategori`, `nama_kategori`) VALUES
-(6, 'mikrotik');
+(6, 'mikrotikk');
 
 -- --------------------------------------------------------
 
@@ -129,7 +128,7 @@ CREATE TABLE `tb_satuan` (
 --
 
 INSERT INTO `tb_satuan` (`id_satuan`, `nama_satuan`) VALUES
-(2, 'pcs'),
+(2, 'pcss'),
 (4, 'meter');
 
 -- --------------------------------------------------------
@@ -150,7 +149,8 @@ CREATE TABLE `tb_supplier` (
 --
 
 INSERT INTO `tb_supplier` (`id_supplier`, `nama_supplier`, `no_telp`, `alamat`) VALUES
-(6, 'dfd', '085692029051', 'Jalan jalan');
+(6, 'Ari', '085692029051', 'Jalan jalan 00'),
+(7, 'Dina Risky Alin Saputri', '0989', 'jad');
 
 -- --------------------------------------------------------
 
@@ -171,7 +171,10 @@ CREATE TABLE `tb_upload_gambar_user` (
 
 INSERT INTO `tb_upload_gambar_user` (`id_upload_gambar_user`, `id_user`, `nama_file`, `ukuran_file`) VALUES
 (10, 24, 'nopic.png', '6.33'),
-(11, 33, 'nopic.png', '6.33');
+(11, 33, 'nopic.png', '6.33'),
+(12, 33, 'nopic.png', '6.33'),
+(16, 38, 'nopic.png', '6.33'),
+(17, 39, 'nopic.png', '6.33');
 
 -- --------------------------------------------------------
 
@@ -193,9 +196,10 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `email`, `password`, `role`, `last_login`) VALUES
-(24, 'admin', 'admin@gmail.com', '$2y$10$15o2ubViWPYAVZ0jlywqCex5uhA1ESshNG63u1TAtCw7NwTmRDSfK', 1, '06-08-2021 12:22 am'),
-(32, 'admin1', 'admin.agit@gmail.com', '$2y$10$x9puDn.f2YxqyLnJt8i4Gev36bXuIIxaU1wm0z/cSBNYf53OWTcg2', 1, ''),
-(33, 'user', 'user@gmail.com', '$2y$10$OlaROY.jWve//X62BjjUuO2NRQLssgBx5wdGaizGXTBMw7jfqkfZC', 0, '06-08-2021 12:13 am');
+(24, 'admin', 'admin@gmail.com', '$2y$10$15o2ubViWPYAVZ0jlywqCex5uhA1ESshNG63u1TAtCw7NwTmRDSfK', 1, '10-08-2021 9:17 am'),
+(33, 'user', 'user@gmail.com', '$2y$10$OlaROY.jWve//X62BjjUuO2NRQLssgBx5wdGaizGXTBMw7jfqkfZC', 0, '10-08-2021 8:10 am'),
+(38, 'admin1', 'admin.agit@gmail.com', '$2y$10$UPhMbdrq0SljKgWsmomc7ukot5T0HX0D9PPbQIvuX1zjY/.1DI3M.', 1, '10-08-2021 7:18 am'),
+(39, 'admin2', 'admin.fenti@gmail.com', '$2y$10$LMwZfCxz0uLep2VDQEI9nOrGLyc0cfZnYmF9L7jtqMSPQUfVkQOT6', 1, '10-08-2021 7:22 am');
 
 --
 -- Indexes for dumped tables
@@ -267,13 +271,13 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_barang_keluar`
 --
 ALTER TABLE `tb_barang_keluar`
-  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_barang_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kategori`
@@ -291,19 +295,19 @@ ALTER TABLE `tb_satuan`
 -- AUTO_INCREMENT untuk tabel `tb_supplier`
 --
 ALTER TABLE `tb_supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_upload_gambar_user`
 --
 ALTER TABLE `tb_upload_gambar_user`
-  MODIFY `id_upload_gambar_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_upload_gambar_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_user` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

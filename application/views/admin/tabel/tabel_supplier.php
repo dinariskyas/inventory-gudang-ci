@@ -155,8 +155,8 @@
               <li><a href="<?= base_url('admin/tabel_barang_masuk') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Masuk</a></li>
               <li><a href="<?= base_url('admin/tabel_barang_keluar') ?>"><i class="fa fa-circle-o"></i> Tabel Barang Keluar</a></li>
               <li><a href="<?= base_url('admin/tabel_barang') ?>"><i class="fa fa-circle-o"></i> Tabel Barang</a></li>
-              <li class="active"><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
-              <li><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
+              <li><a href="<?= base_url('admin/tabel_supplier') ?>"><i class="fa fa-circle-o"></i> Tabel Supplier</a></li>
+              <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>"><i class="fa fa-circle-o"></i> Tabel Kategori</a></li>
               <li><a href="<?= base_url('admin/tabel_satuan') ?>"><i class="fa fa-circle-o"></i> Tabel Satuan</a></li>
             </ul>
           </li>
@@ -189,7 +189,7 @@
         <ol class="breadcrumb">
           <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
           <li>Tables</li>
-          <li class="active"><a href="<?= base_url('admin/tabel_kategori') ?>">Tabel Supplier</a></li>
+          <li class="active"><a href="<?= base_url('admin/tabel_supplier') ?>">Tabel Supplier</a></li>
         </ol>
       </section>
 
@@ -213,8 +213,8 @@
                   </div>
                 <?php } ?>
 
-                <a href="<?= base_url('admin/form_supplier') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Supplier</a>
-                <table id="e xample1" class="table table-bordered table-striped">
+                <a href="<?= base_url('admin/form_supplier') ?>" style="margin-bottom:10px;" type="button" class="btn btn-primary" name="tambah_data"><i class="fa fa-plus-circle" aria-hidden="true"></i> Tambah Data Kategori</a>
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -234,8 +234,9 @@
                           <td><?= $data->no_telp ?></td>
                           <td><?= $data->alamat ?></td>
                           <th>
-                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_supplier/' . $data->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a></td>
-                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_supplier/' . $data->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a></td>
+                            <a type="button" class="btn btn-success" href="<?= base_url('admin/update_supplier/' . $data->id_supplier) ?>" name="btn_update" style="margin:auto;"><i class="fa fa-edit" aria-hidden="true"> Edit</i></a>
+                            <a type="button" class="btn btn-danger btn-delete" href="<?= base_url('admin/delete_supplier/' . $data->id_supplier) ?>" name="btn_delete" style="margin:auto;"><i class="fa fa-times-circle" aria-hidden="true"> Delete</i></a>
+                          </th>
                     </tr>
                     <?php $no++; ?>
                   <?php endforeach; ?>
@@ -247,6 +248,7 @@
               </div>
             </div>
           </div>
+          <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>

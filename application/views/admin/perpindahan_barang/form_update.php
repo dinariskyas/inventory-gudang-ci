@@ -233,7 +233,7 @@
                         <select class="form-control" name="id_supplier" style="margin-left:60px;width:20%;display:inline;" readonly="readonly">
                           <?php foreach ($list_supplier as $supplier) { ?>
                             <?php if ($supplier['id_supplier'] == $list_data['id_supplier']) { ?>
-                              <option value=" <?= $list_data['id_supplier'] ?>" selected=""><?= $supplier['nama_supplier'] ?></option>
+                              <option value=" <?= $list_data['id_supplier'] ?>" selected=""><?= $supplier['nama_supplier'] ?> </option>
                             <?php } else { ?>
                               <option value=" <?= $supplier['id_supplier'] ?>"><?= $supplier['nama_supplier'] ?></option>
                             <?php } ?>

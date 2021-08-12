@@ -2,100 +2,137 @@
 
 class M_admin extends CI_Model
 {
-
-  var $table = 'tb_barang_masuk';
-  var $column_order = array(null, 'id_supplier', 'id_barang', 'id_kategori', 'id_satuan', 'tanggal', 'jumlah'); //set column field database for datatable orderable
-  var $column_search = array('id_supplier', 'id_barang', 'id_kategori', 'id_satuan', 'tanggal', 'jumlah'); //set column field database for datatable searchable 
-  var $order = array('id' => 'asc'); // default order 
-
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->database();
-  }
+  // barang masuk
+  var $column_order = array('id_barang_masuk', 'nama_supplier', 'nama_barang', 'nama_kategori', 'nama_satuan', 'tanggal', 'jumlah'); //set column field database for datatable orderable
+  var $column_search = array('nama_supplier', 'nama_barang', 'nama_kategori', 'nama_satuan', 'tanggal', 'jumlah'); //set column field database for datatable searchable
+  var $order = array('id_barang_masuk' => 'asc'); // default order 
 
   private function _get_datatables_query()
   {
+    $this->db->select('*');
+    $this->db->from('tb_barang_masuk bm');
+    $this->db->join('tb_supplier s', 's.id_supplier = bm.id_supplier');
+    $this->db->join('tb_barang b', 'b.id_barang = bm.id_barang');
+    $this->db->join('tb_kategori k', 'k.id_kategori = bm.id_kategori');
+    $this->db->join('tb_satuan sa', 'sa.id_satuan = bm.id_satuan');
+    $this->db->where('bm.jumlah>', 0);
 
     //add custom filter here
-    if ($this->input->post('id_barang')) {
-      $this->db->where('id_barang', $this->input->post('id_barang'));
-    }
     if ($this->input->post('tanggal')) {
       $this->db->like('tanggal', $this->input->post('tanggal'));
     }
-    if ($this->input->post('id_supplier')) {
-      $this->db->like('id_supplier', $this->input->post('id_supplier'));
+    if ($this->input->post('nama_supplier')) {
+      $this->db->like('nama_supplier', $this->input->post('nama_supplier'));
     }
 
-    $this->db->from($this->table);
     $i = 0;
-
-    foreach ($this->column_search as $item) // loop column 
-    {
-      if ($_POST['search']['value']) // if datatable send POST for search
-      {
-
-        if ($i === 0) // first loop
-        {
+    foreach ($this->column_search as $item) { // loop column 
+      if (@$_POST['search']['value']) { // if datatable send POST for search
+        if ($i === 0) { // first loop
           $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
           $this->db->like($item, $_POST['search']['value']);
         } else {
           $this->db->or_like($item, $_POST['search']['value']);
         }
-
         if (count($this->column_search) - 1 == $i) //last loop
           $this->db->group_end(); //close bracket
       }
       $i++;
     }
 
-    if (isset($_POST['order'])) // here order processing
-    {
+    if (isset($_POST['order'])) { // here order processing
       $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
     } else if (isset($this->order)) {
       $order = $this->order;
       $this->db->order_by(key($order), $order[key($order)]);
     }
   }
-
-  public function get_datatables()
+  function get_datatables()
   {
     $this->_get_datatables_query();
-    if ($_POST['length'] != -1)
-      $this->db->limit($_POST['length'], $_POST['start']);
+    if (@$_POST['length'] != -1)
+      $this->db->limit(@$_POST['length'], @$_POST['start']);
     $query = $this->db->get();
     return $query->result();
   }
-
-  public function count_filtered()
+  function count_filtered()
   {
     $this->_get_datatables_query();
     $query = $this->db->get();
     return $query->num_rows();
   }
-
-  public function count_all()
+  function count_all()
   {
-    $this->db->from($this->table);
+    $this->db->from('tb_barang_masuk');
     return $this->db->count_all_results();
   }
+  // end datatables barang masuk
 
-  public function get_list_barang()
+
+  // barang keluar
+  var $column_order2 = array('id_barang_masuk', 'nama_supplier', 'nama_barang', 'nama_kategori', 'nama_satuan', 'tanggal_masuk', 'tanggal_keluar', 'jumlah'); //set column field database for datatable orderable
+  var $column_search2 = array('nama_supplier', 'nama_barang', 'nama_kategori', 'nama_satuan', 'tanggal_masuk', 'tanggal_keluar', 'jumlah'); //set column field database for datatable searchable
+  var $order2 = array('id_barang_keluar' => 'asc'); // default order 
+
+  private function _get_datatables_query2()
   {
-    $this->db->select('id_barang');
-    $this->db->from($this->table);
-    $this->db->order_by('id_barang', 'asc');
-    $query = $this->db->get();
-    $result = $query->result();
+    $this->db->select('*');
+    $this->db->from('tb_barang_keluar bk');
+    $this->db->join('tb_supplier s', 's.id_supplier = bk.id_supplier');
+    $this->db->join('tb_barang b', 'b.id_barang = bk.id_barang');
+    $this->db->join('tb_kategori k', 'k.id_kategori = bk.id_kategori');
+    $this->db->join('tb_satuan sa', 'sa.id_satuan = bk.id_satuan');
 
-    $barang = array();
-    foreach ($result as $row) {
-      $barang[] = $row->id_barang;
+    //add custom filter here
+    if ($this->input->post('tanggal_keluar')) {
+      $this->db->like('tanggal_keluar', $this->input->post('tanggal_keluar'));
     }
-    return $barang;
-  }
+    if ($this->input->post('nama_supplier')) {
+      $this->db->like('nama_supplier', $this->input->post('nama_supplier'));
+    }
 
+    $i = 0;
+    foreach ($this->column_search2 as $item) { // loop column 
+      if (@$_POST['search']['value']) { // if datatable send POST for search
+        if ($i === 0) { // first loop
+          $this->db->group_start(); // open bracket. query Where with OR clause better with bracket. because maybe can combine with other WHERE with AND.
+          $this->db->like($item, $_POST['search']['value']);
+        } else {
+          $this->db->or_like($item, $_POST['search']['value']);
+        }
+        if (count($this->column_search2) - 1 == $i) //last loop
+          $this->db->group_end(); //close bracket
+      }
+      $i++;
+    }
+
+    if (isset($_POST['order'])) { // here order processing
+      $this->db->order_by($this->column_order2[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+    } else if (isset($this->order2)) {
+      $order2 = $this->order2;
+      $this->db->order_by(key($order2), $order2[key($order2)]);
+    }
+  }
+  function get_datatables2()
+  {
+    $this->_get_datatables_query2();
+    if (@$_POST['length'] != -1)
+      $this->db->limit(@$_POST['length'], @$_POST['start']);
+    $query = $this->db->get();
+    return $query->result();
+  }
+  function count_filtered2()
+  {
+    $this->_get_datatables_query2();
+    $query = $this->db->get();
+    return $query->num_rows();
+  }
+  function count_all2()
+  {
+    $this->db->from('tb_barang_keluar');
+    return $this->db->count_all_results();
+  }
+  // end datatables barang keluar
   //
   public function insert($tabel, $data)
   {
@@ -179,6 +216,7 @@ class M_admin extends CI_Model
     $this->db->join('tb_barang b', 'b.id_barang = bm.id_barang');
     $this->db->join('tb_kategori k', 'k.id_kategori = bm.id_kategori');
     $this->db->join('tb_satuan sa', 'sa.id_satuan = bm.id_satuan');
+    $this->db->where('bm.jumlah >', 0);
 
     $query = $this->db->get();
     return $query->result_array();

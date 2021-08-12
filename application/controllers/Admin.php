@@ -640,13 +640,6 @@ class Admin extends CI_Controller
 
   public function tabel_barang_masuk()
   {
-    $barang = $this->M_admin->get_list_barang();
-
-    $opt = array('' => 'All Barang');
-    foreach ($barang as $barang) {
-      $opt[$barang] = $barang;
-    }
-
     $data = array(
       'list_data' => $this->M_admin->getAllBarangMasuk(),
       'supplier'  => $this->M_admin->getAllSupplier(),
@@ -655,36 +648,38 @@ class Admin extends CI_Controller
       'satuan'  => $this->M_admin->getAllSatuan(),
       'avatar'    => $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'))
     );
-    $data['form_barang'] = form_dropdown('', $opt, '', 'id="barang" class="form-control"');
     $this->load->view('admin/tabel/tabel_barang_masuk', $data);
   }
 
-  public function ajax_list()
+  function get_ajax()
   {
-    $list = $this->tb_barang_masuk->get_datatables();
+    $list = $this->M_admin->get_datatables();
     $data = array();
-    $no = $_POST['start'];
+    $no = @$_POST['start'];
     foreach ($list as $barang_masuk) {
       $no++;
       $row = array();
-      $row[] = $no;
-      $row[] = $barang_masuk->id_supplier;
-      $row[] = $barang_masuk->id_barang;
-      $row[] = $barang_masuk->id_kategori;
-      $row[] = $barang_masuk->id_satuan;
+      $row[] = $no . ".";
+      $row[] = $barang_masuk->id_barang_masuk;
       $row[] = $barang_masuk->tanggal;
+      $row[] = $barang_masuk->nama_supplier;
+      $row[] = $barang_masuk->nama_barang;
+      $row[] = $barang_masuk->nama_kategori;
+      $row[] = $barang_masuk->nama_satuan;
       $row[] = $barang_masuk->jumlah;
-
+      // add html for action
+      $row[] = '<a href="' . site_url('admin/update_barang_masuk/' . $barang_masuk->id_barang_masuk) . '" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>
+                <a href="' . site_url('admin/delete_barang_masuk/' . $barang_masuk->id_barang_masuk) . '" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Delete</a>
+                <a href="' . site_url('admin/barang_keluar/' . $barang_masuk->id_barang_masuk) . '"  class="btn btn-warning btn-barangkeluar"><i class="fa fa-sign-out"></i> Keluarkan</a>';
       $data[] = $row;
     }
-
     $output = array(
-      "draw" => $_POST['draw'],
-      "recordsTotal" => $this->tb_barang_masuk->count_all(),
-      "recordsFiltered" => $this->tb_barang_masuk->count_filtered(),
+      "draw" => @$_POST['draw'],
+      "recordsTotal" => $this->M_admin->count_all(),
+      "recordsFiltered" => $this->M_admin->count_filtered(),
       "data" => $data,
     );
-    //output to json format
+    // output to json format
     echo json_encode($output);
   }
 
@@ -948,5 +943,36 @@ class Admin extends CI_Controller
     $data['avatar'] = $this->M_admin->get_data_gambar('tb_upload_gambar_user', $this->session->userdata('id_user'));
     // var_dump($data['list_data']);
     $this->load->view('admin/tabel/tabel_barang_keluar', $data);
+  }
+
+  function get_ajax_keluar()
+  {
+    $list = $this->M_admin->get_datatables2();
+    $data = array();
+    $no = @$_POST['start'];
+    foreach ($list as $barang_keluar) {
+      $no++;
+      $row = array();
+      $row[] = $no . ".";
+      $row[] = $barang_keluar->id_barang_masuk;
+      $row[] = $barang_keluar->tanggal_masuk;
+      $row[] = $barang_keluar->tanggal_keluar;
+      $row[] = $barang_keluar->nama_supplier;
+      $row[] = $barang_keluar->nama_barang;
+      $row[] = $barang_keluar->nama_kategori;
+      $row[] = $barang_keluar->nama_satuan;
+      $row[] = $barang_keluar->jumlah;
+      // add html for action
+      $row[] = '<a href="' . site_url('admin/delete_barang_keluar/' . $barang_keluar->id_barang_keluar) . '" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger"><i class="fa fa-times-circle"></i> Delete</a>';
+      $data[] = $row;
+    }
+    $output = array(
+      "draw" => @$_POST['draw'],
+      "recordsTotal" => $this->M_admin->count_all2(),
+      "recordsFiltered" => $this->M_admin->count_filtered2(),
+      "data" => $data,
+    );
+    // output to json format
+    echo json_encode($output);
   }
 }
